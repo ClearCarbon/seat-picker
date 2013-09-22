@@ -1,0 +1,90 @@
+$background: #ddd;
+$border-color: #aaa;
+$border-size: 3px;
+$seat-size: 40px;
+$table-length: 180px;
+$table-width: 75px;
+$room-width: 850px;
+$room-height: 1517px;
+
+$seat-margin: $seat-size / 4;
+$seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
+
+.object {
+  background-color: $background;
+  border: $border-size solid $border-color;
+}
+
+.seat {
+  @extend .object;
+  width: $seat-size;
+  height: $seat-size;
+  margin: $seat-margin;
+}
+
+.seattop, .seatbottom {
+  @extend .seat;
+  float: left;
+}
+
+.seatleft, .seatright {
+  @extend .seat;
+}
+
+.seattop:first-child, .seatbottom:first-child {
+  margin-right: $seat-gap;
+}
+
+.seatleft:first-child, .seatright:first-child {
+  margin-bottom: $seat-gap;
+}
+
+.seatsleft, .seatsright {
+  float: left;
+}
+
+.table {
+  @extend .object;
+}
+
+.tabletop, .tablebottom {
+  @extend .table;
+  width: $table-length;
+  height: $table-width;
+  clear: both;
+}
+
+.tableleft, .tableright {
+  @extend .table;
+  height: $table-length;
+  width: $table-width;
+  float: left;
+}
+
+.table-seat-group {
+  float: left;
+}
+
+.table-row {
+  clear: both;
+}
+
+.table-row {
+  float: right;
+}
+
+.room {
+  background-image: url('/images/plan.png');
+  width: $room-width;
+  height: $room-height;
+}
+
+/* theme specific styles */
+.picker {
+  padding-right: 135px;
+  padding-top: 25px;
+}
+
+.staff .table-row{
+  padding-top: 30px;
+}

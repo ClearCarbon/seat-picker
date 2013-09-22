@@ -1,0 +1,13 @@
+<div class='room'>
+  <div class='picker'>
+    <%= render partial: "table_row", locals: {seats: :top, tables: 2} %>
+    <%= render partial: "table_row", locals: {seats: :bottom, tables: 2} %>
+
+    <%= render partial: "table_row", locals: {seats: :top, tables: 2} %>
+    <%= render partial: "table_row", locals: {seats: :bottom, tables: 2} %>
+
+    <span class='staff'>
+      <%= render partial: "table_row", locals: {seats: :left, tables: 1} %>
+    </span>
+  </div>
+</div>

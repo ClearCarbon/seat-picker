@@ -1,0 +1,17 @@
+<div class='table-row'>
+  <% tables.times do |i| %>
+    <div class='table-seat-group'>
+
+      <% if seats == :top  or seats == :left %>
+        <%= render partial: "seats", locals: {seats: seats} %>
+      <% end %>
+
+      <%= render partial: "table", locals: {seats: seats} %>
+
+      <% if seats == :bottom %>
+        <%= render partial: "seats", locals: {seats: seats} %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
