@@ -1,0 +1,13 @@
+<div class='seatpicker-room'>
+  <div class='seatpicker-picker'>
+    <%= render partial: "table_row", locals: {seats: :top, tables: 2} %>
+    <%= render partial: "table_row", locals: {seats: :bottom, tables: 2} %>
+
+    <%= render partial: "table_row", locals: {seats: :top, tables: 2} %>
+    <%= render partial: "table_row", locals: {seats: :bottom, tables: 2} %>
+
+    <span class='seatpicker-staff'>
+      <%= render partial: "table_row", locals: {seats: :left, tables: 1} %>
+    </span>
+  </div>
+</div>

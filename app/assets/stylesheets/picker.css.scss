@@ -1,0 +1,94 @@
+// Place all the styles related to the picker controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$background: #ddd;
+$border-color: #aaa;
+$border-size: 3px;
+$seat-size: 40px;
+$table-length: 180px;
+$table-width: 75px;
+$room-width: 850px;
+$room-height: 1517px;
+
+$seat-margin: $seat-size / 4;
+$seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
+
+.seatpicker-object {
+  background-color: $background;
+  border: $border-size solid $border-color;
+}
+
+.seatpicker-seat {
+  @extend .seatpicker-object;
+  width: $seat-size;
+  height: $seat-size;
+  margin: $seat-margin;
+}
+
+.seatpicker-seattop, .seatpicker-seatbottom {
+  @extend .seatpicker-seat;
+  float: left;
+}
+
+.seatpicker-seatleft, .seatpicker-seatright {
+  @extend .seatpicker-seat;
+}
+
+.seatpicker-seattop:first-child, .seatpicker-seatbottom:first-child {
+  margin-right: $seat-gap;
+}
+
+.seatpicker-seatleft:first-child, .seatpicker-seatright:first-child {
+  margin-bottom: $seat-gap;
+}
+
+.seatpicker-seatsleft, .seatpicker-seatsright {
+  float: left;
+}
+
+.seatpicker-table {
+  @extend .seatpicker-object;
+}
+
+.seatpicker-tabletop, .seatpicker-tablebottom {
+  @extend .seatpicker-table;
+  width: $table-length;
+  height: $table-width;
+  clear: both;
+}
+
+.seatpicker-tableleft, .seatpicker-tableright {
+  @extend .seatpicker-table;
+  height: $table-length;
+  width: $table-width;
+  float: left;
+}
+
+.seatpicker-table-seat-group {
+  float: left;
+}
+
+.seatpicker-table-row {
+  clear: both;
+}
+
+.seatpicker-table-row {
+  float: right;
+}
+
+.seatpicker-room {
+  background-image: url('/images/plan.png');
+  width: $room-width;
+  height: $room-height;
+}
+
+/* theme specific styles */
+.seatpicker-picker {
+  padding-right: 135px;
+  padding-top: 25px;
+}
+
+.seatpicker-staff .seatpicker-table-row{
+  padding-top: 30px;
+}

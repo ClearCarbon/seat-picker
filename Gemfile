@@ -35,6 +35,11 @@ end
 
 gem 'devise'
 
+gem 'less-rails'
+gem 'twitter-bootstrap-rails', 
+  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', 
+  :branch => 'bootstrap3'  
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
