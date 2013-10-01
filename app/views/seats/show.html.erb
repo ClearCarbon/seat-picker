@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Row:</strong>
+  <%= @seat.row %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @seat.number %>
+</p>
+
+<hr class='divider'>
+
+<%= link_to 'Edit', edit_seat_path(@seat) %> |
+<%= link_to 'Back', seats_path %>
