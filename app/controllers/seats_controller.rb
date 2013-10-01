@@ -6,8 +6,8 @@ class SeatsController < ApplicationController
   # GET /seats
   # GET /seats.json
   def index
-
-    @seats = Seat.all
+    @seats = Seat.order('row asc', 'number asc')
+    # @seats = Seat.all
   end
 
   # GET /seats/1

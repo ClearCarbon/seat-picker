@@ -1,7 +1,17 @@
 <h1>New seat</h1>
 
-<%= render 'form' %>
+<%= form_for (@seat) do |f| %>
+
+  <div class='form-group'><%= f.label :row %><br />
+    <%= f.text_field :row,
+      :class => 'form-control' %></div>
+
+  <div class='form-group'><%= f.label :number %><br />
+    <%= f.number_field :number,
+      :class => 'form-control' %></div>
+
+  <div><%= f.submit "Create", :class => 'btn btn-default'  %></div>
+<% end %>
 
 <hr class='divider'>
-
 <%= link_to 'Back', seats_path %>

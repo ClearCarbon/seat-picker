@@ -1,10 +1,14 @@
 <h1>Listing seats</h1>
 
-<table>
+<%= button_to "New Seat", 
+  new_seat_path, 
+  :method => :get,
+  :class => 'btn btn-default pull-right' %>
+
+<table class='table table-striped'>
   <thead>
     <tr>
-      <th>Row</th>
-      <th>Number</th>
+      <th>Seat</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,8 +18,7 @@
   <tbody>
     <% @seats.each do |seat| %>
       <tr>
-        <td><%= seat.row %></td>
-        <td><%= seat.number %></td>
+        <td><%= seat.row %><%= seat.number %></td>
         <td><%= link_to 'Show', seat %></td>
         <td><%= link_to 'Edit', edit_seat_path(seat) %></td>
         <td><%= link_to 'Destroy', seat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +29,3 @@
 
 <br>
 
-<%= link_to 'New Seat', new_seat_path %>
