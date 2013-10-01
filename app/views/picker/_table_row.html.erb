@@ -3,13 +3,15 @@
     <div class='seatpicker-table-seat-group'>
 
       <% if seats == :top  or seats == :left %>
-        <%= render partial: "seats", locals: {seats: seats} %>
+        <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
+                                              seats: seats} %>
       <% end %>
 
       <%= render partial: "table", locals: {seats: seats} %>
 
       <% if seats == :bottom %>
-        <%= render partial: "seats", locals: {seats: seats} %>
+        <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
+                                              seats: seats} %>
       <% end %>
 
     </div>

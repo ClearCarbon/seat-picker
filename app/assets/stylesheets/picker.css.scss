@@ -26,6 +26,15 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
   margin: $seat-margin;
 }
 
+.seatpicker-seat span {
+  color: $border-color;
+  font-size: 130%;
+  padding-left: $seat-size / 8;
+  padding-top: $seat-size / 8;
+  display: block;
+  font-weight: bold;
+}
+
 .seatpicker-seattop, .seatpicker-seatbottom {
   @extend .seatpicker-seat;
   float: left;
