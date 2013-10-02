@@ -4,14 +4,15 @@
 
 <div class='seatpicker-room'>
   <div class='seatpicker-picker'>
-    <%= render partial: "table_row", locals: {row: 'A', seats: :top, tables: 2} %>
-    <%= render partial: "table_row", locals: {row: 'B', seats: :bottom, tables: 2} %>
 
-    <%= render partial: "table_row", locals: {row: 'C', seats: :top, tables: 2} %>
-    <%= render partial: "table_row", locals: {row: 'D', seats: :bottom, tables: 2} %>
+    <%= render partial: "table_row", locals: {row: 'A', seats: :top, tables: 2, selected_seats: @selected_seats} %>
+    <%= render partial: "table_row", locals: {row: 'B', seats: :bottom, tables: 2, selected_seats: @selected_seats} %>
+
+    <%= render partial: "table_row", locals: {row: 'C', seats: :top, tables: 2, selected_seats: @selected_seats} %>
+    <%= render partial: "table_row", locals: {row: 'D', seats: :bottom, tables: 2, selected_seats: @selected_seats} %>
 
     <span class='seatpicker-staff'>
-      <%= render partial: "table_row", locals: {row: 'E', seats: :left, tables: 1} %>
+      <%= render partial: "table_row", locals: {row: 'E', seats: :left, tables: 1, selected_seats: @selected_seats} %>
     </span>
   </div>
 </div>

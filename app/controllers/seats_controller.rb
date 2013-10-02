@@ -22,6 +22,7 @@ class SeatsController < ApplicationController
 
   # GET /seats/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /seats
@@ -72,7 +73,7 @@ class SeatsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def seat_params
-    params.require(:seat).permit(:row, :number)
+    params.require(:seat).permit(:row, :number, :user_id)
   end
 
 end

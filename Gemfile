@@ -40,6 +40,9 @@ gem 'twitter-bootstrap-rails',
   :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', 
   :branch => 'bootstrap3'  
 
+gem "faker", "~> 1.2.0"
+gem "machinist", "~> 2.0"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

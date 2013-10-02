@@ -4,14 +4,16 @@
 
       <% if seats == :top  or seats == :left %>
         <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
-                                              seats: seats} %>
+                                              seats: seats,
+                                              selected_seats: selected_seats} %>
       <% end %>
 
       <%= render partial: "table", locals: {seats: seats} %>
 
       <% if seats == :bottom %>
         <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
-                                              seats: seats} %>
+                                              seats: seats,
+                                              selected_seats: selected_seats} %>
       <% end %>
 
     </div>
