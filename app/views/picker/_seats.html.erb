@@ -3,7 +3,7 @@
     <span><%= row + number.to_s %></span>
   </div>
 
-  <div class='seatpicker-seat<%= seats.to_s %>'>
-    <span><%= row + (number + 1).to_s + selected_class(row, number + 1, selected_seats) %></span>
+  <div class='seatpicker-seat<%= seats.to_s + selected_class(row, number + 1, selected_seats) %>'>
+    <span><%= row + (number + 1).to_s  %></span>
   </div>
 </div>
