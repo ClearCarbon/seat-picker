@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_seat_admin
-    unless current_user.email == 'jabba@clear-carbon.co.uk'
+    unless current_user.email == 'admin@example.com'
       flash[:error] = "You do not have permission to do that."
       redirect_to root_path
     end

@@ -5,14 +5,14 @@
 <div class='seatpicker-room'>
   <div class='seatpicker-picker'>
 
-    <%= render partial: "table_row", locals: {row: 'A', seats: :top, tables: 2, selected_seats: @selected_seats} %>
-    <%= render partial: "table_row", locals: {row: 'B', seats: :bottom, tables: 2, selected_seats: @selected_seats} %>
+    <%= render partial: "table_row", locals: {row: 'A', align: :top, seats: seat_row(@seats, 'A')} %>
+    <%= render partial: "table_row", locals: {row: 'B', align: :bottom, seats: seat_row(@seats, 'B')} %>
 
-    <%= render partial: "table_row", locals: {row: 'C', seats: :top, tables: 2, selected_seats: @selected_seats} %>
-    <%= render partial: "table_row", locals: {row: 'D', seats: :bottom, tables: 2, selected_seats: @selected_seats} %>
+    <%= render partial: "table_row", locals: {row: 'C', align: :top, seats: seat_row(@seats, 'C')} %>
+    <%= render partial: "table_row", locals: {row: 'D', align: :bottom, seats: seat_row(@seats, 'D')} %>
 
     <span class='seatpicker-staff'>
-      <%= render partial: "table_row", locals: {row: 'E', seats: :left, tables: 1, selected_seats: @selected_seats} %>
+      <%= render partial: "table_row", locals: {row: 'E', align: :left, seats: seat_row(@seats, 'E')} %>
     </span>
   </div>
 </div>

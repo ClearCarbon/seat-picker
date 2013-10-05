@@ -1,12 +1,23 @@
 module PickerHelper
-  def selected_class(row, number, selected_seats)
+  def selected_class(seat)
 
-    selected_seats.each do |selected_seat|
-      if(selected_seat.row == row && selected_seat.number == number)
-        return ' selected'
+    if(seat.user_id.nil?)
+      return ''
+    else
+      return ' selected'
+    end
+
+  end
+
+  def seat_row(seats, row)
+    row_seats = Array.new
+
+    seats.each do |seat|
+      if(seat.row == row)
+        row_seats.push(seat)
       end
     end
 
-    return ''
+    row_seats
   end
 end

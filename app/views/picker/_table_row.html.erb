@@ -1,19 +1,15 @@
 <div class='seatpicker-table-row'>
-  <% tables.times do |i| %>
+  <% seats.each_slice(2) do |table_seats| %>
     <div class='seatpicker-table-seat-group'>
 
-      <% if seats == :top  or seats == :left %>
-        <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
-                                              seats: seats,
-                                              selected_seats: selected_seats} %>
+      <% if align == :top  or align == :left %>
+        <%= render partial: "seats", locals: {align: align, seats: table_seats} %>
       <% end %>
 
-      <%= render partial: "table", locals: {seats: seats} %>
+      <%= render partial: "table", locals: {align: align} %>
 
-      <% if seats == :bottom %>
-        <%= render partial: "seats", locals: {row: row, number: (i * 2) + 1, 
-                                              seats: seats,
-                                              selected_seats: selected_seats} %>
+      <% if align == :bottom %>
+        <%= render partial: "seats", locals: {align: align, seats: table_seats} %>
       <% end %>
 
     </div>
