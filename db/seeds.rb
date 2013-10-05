@@ -24,6 +24,6 @@ for i in 1..20
 end
 
 User.create( {
-  :email => 'jabba@clear-carbon.co.uk',
+  :email => 'admin@example.com',
   :password => 'password42',
   :password_confirmation => 'password42' })
