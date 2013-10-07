@@ -25,5 +25,5 @@ end
 
 User.create( {
   :email => 'admin@example.com',
-  :password => 'password42',
-  :password_confirmation => 'password42' })
+  :password => 'password',
+  :password_confirmation => 'password' })

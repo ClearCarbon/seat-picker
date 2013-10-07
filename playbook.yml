@@ -1,0 +1,10 @@
+---
+ - hosts: vagrant
+   gather_facts: no
+   sudo: yes
+
+   roles:
+     - ansible/core
+     - ansible/sqlite
+     - ansible/rails
+     - { role: ansible/ruby, version: ruby2.0 }
