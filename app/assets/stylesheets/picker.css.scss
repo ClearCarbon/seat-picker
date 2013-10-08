@@ -29,6 +29,7 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
   width: $seat-size;
   height: $seat-size;
   margin: $seat-margin;
+  cursor: pointer;
 }
 
 .seatpicker-seat span {
