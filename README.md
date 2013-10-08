@@ -1,5 +1,9 @@
-currently in dev
+# Seat Picker
 
-will allow signup with private link sharing and basic seat picking
+A seat picker to help in the running of events.
 
-hope to add seat requests
+
+## Status
+
+Currently very much a work in progress. I'm implementing this for a specific
+use case at the moment.
