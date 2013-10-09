@@ -1,18 +1,25 @@
 jQuery ->
-  $('[data-toggle="tooltip"]').tooltip()
-  $('[data-toggle="popover"]').popover({placement: 'top'})
+    window.init_picker()
 
 window.pick_seat = (seat_id) -> 
     $.post '/picker/' + seat_id + '/pick', {},
      (data) ->
-        location.reload()
+        window.reload_picker()
 
 window.give_up_seat = (seat_id) -> 
     $.post '/picker/' + seat_id + '/give_up', {},
      (data) ->
-        location.reload()
+        window.reload_picker()
 
 window.request_seat = (seat_id) -> 
     $.post '/picker/' + seat_id + '/make_request', {},
      (data) ->
-        location.reload()
+        window.reload_picker()
+
+window.reload_picker = () ->
+    $('#seatpicker-room').load '/picker #seatpicker-room', () ->
+      window.init_picker()
+
+window.init_picker = () ->
+    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="popover"]').popover({placement: 'top'})
