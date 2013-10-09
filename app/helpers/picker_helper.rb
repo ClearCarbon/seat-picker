@@ -4,7 +4,11 @@ module PickerHelper
     if(seat.user_id.nil?)
       return ''
     else
-      return ' selected'
+      if(seat.user_id == current_user.id)
+        return ' highlight'
+      else 
+        return ' selected'
+      end
     end
 
   end

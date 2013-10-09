@@ -5,6 +5,7 @@
 $background: #ddd;
 $border-color: #aaa;
 $selected-border-color: #555;
+$highlight-border-color: #428bca;
 $border-size: 3px;
 $seat-size: 40px;
 $table-length: 180px;
@@ -22,6 +23,10 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
 
 .selected span {
   color: $selected-border-color !important;
+}
+
+.highlight span {
+  color: $highlight-border-color !important;
 }
 
 .seatpicker-seat {
