@@ -1,6 +1,6 @@
 <div class='seatpicker-seats<%= align.to_s %>'>
   <% seats.each do |seat| %>
-    <div class='seatpicker-seat<%= align.to_s + selected_class(seat) %>' onclick='pick_seat(<%= seat.id %>)' data-toggle='tooltip' title='<%= seat.user.try(:email)  %>'>
+    <div class='seatpicker-seat<%= align.to_s + selected_class(seat) %>' data-toggle='popover' title='<%= seat.user.try(:email) || 'Empty seat'  %>', data-content='<%= render 'seat_popover', seat: seat %>' data-html='true'>
       <span><%= seat.row + seat.number.to_s %></span>
     </div>
   <% end %>
