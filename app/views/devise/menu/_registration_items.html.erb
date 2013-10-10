@@ -4,6 +4,8 @@
   </li>
 <% else %>
   <li>
-  <%= link_to('Sign up', new_user_registration_path)  %>
+  <% if !Rails.application.config.restricted_registration %>
+    <%= link_to('Sign up', new_user_registration_path)  %>
+  <% end %>
   </li>
 <% end %>
