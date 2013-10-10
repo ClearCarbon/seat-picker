@@ -7,4 +7,6 @@
      - ansible/core
      - ansible/sqlite
      - ansible/rails
+     - ansible/postgresql
+     - { role: ansible/app, name: seat_picker, password: seat_picker }
      - { role: ansible/ruby, version: ruby2.0 }
