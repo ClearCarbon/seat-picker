@@ -23,5 +23,4 @@ window.reload_picker = () ->
 window.init_picker = () ->
     $('[data-toggle="popover"]').popover({placement: 'top', trigger: 'manual'})
     $('[data-toggle="popover"]').click -> 
-        $('[data-toggle="popover"]').popover('hide');
         $(this).popover('toggle')
