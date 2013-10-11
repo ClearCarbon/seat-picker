@@ -5,8 +5,13 @@ SeatPicker::Application.routes.draw do
   resources :picker, only: [:index] do
     member do
       post :pick
-      post :give_up
       post :make_request
+      post :cancel_request
+    end
+    collection do 
+      post :give_up
+      post :donate_seat
+      get  :donate_seat
     end
   end
   resources :seats

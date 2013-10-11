@@ -1,5 +1,6 @@
 class Seat < ActiveRecord::Base
   belongs_to :user
+  has_many :seat_requests, dependent: :destroy
   before_save :ensure_one_seat_for_user
   attr_accessor :skip_user_checking
 

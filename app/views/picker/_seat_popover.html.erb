@@ -1,7 +1,9 @@
 <% if seat.user && seat.user == current_user %>
-  <%= link_to_function 'Give up this seat', "give_up_seat(#{seat.id})", class: 'btn btn-primary' %>
+  This is your current seat.
+<% elsif seat.user && current_user.requested?(seat.object) %>
+  <%= link_to 'Undo this seat request', '#', onclick: "cancel_request(#{seat.id});", class: 'btn btn-primary' %>
 <% elsif seat.user %>
-  <%= link_to_function 'Request this seat', "request_seat(#{seat.id})", class: 'btn btn-primary' %>
+  <%= link_to 'Request this seat', '#', onclick: "request_seat(#{seat.id});", class: 'btn btn-primary' %>
 <% else %>
-  <%= link_to_function 'Pick this seat', "pick_seat(#{seat.id})", class: 'btn btn-primary' %>
+  <%= link_to 'Pick this seat', '#', onclick: "pick_seat(#{seat.id});", class: 'btn btn-primary' %>
 <% end %>

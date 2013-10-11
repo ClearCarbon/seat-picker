@@ -23,6 +23,8 @@ end
 
 gem 'devise'
 
+gem 'draper'
+
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', 
   :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', 
