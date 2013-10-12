@@ -58,6 +58,9 @@
               <%= render 'devise/menu/login_items' %>
             </ul>
           </div><!--/.well -->
+          <% if user_signed_in? %>
+            <%= render '/picker/actions' %>
+          <% end %>
           <% if content_for? :under_right_well %>
             <%= yield :under_right_well %>
           <% end %>
