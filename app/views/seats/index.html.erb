@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Seat</th>
+      <th>Attendee</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,6 +20,9 @@
     <% @seats.each do |seat| %>
       <tr>
         <td><%= seat.row %><%= seat.number %></td>
+        <td><% if seat.user %>
+          <%= seat.user.email %>
+        <% end %></td>
         <td><%= link_to 'Show', seat %></td>
         <td><%= link_to 'Edit', edit_seat_path(seat) %></td>
         <td><%= link_to 'Destroy', seat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
