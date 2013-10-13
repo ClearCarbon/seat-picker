@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :registration_allowed!
 
   def ensure_registration_key!
-    key = !Rails.application.config.restricted_registration_key
+    key = Rails.application.config.restricted_registration_key
     given_key = params[:key];
 
     if key != given_key
