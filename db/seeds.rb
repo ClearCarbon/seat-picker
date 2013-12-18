@@ -13,22 +13,17 @@ rows.each do |row, seats|
 end
 
 
-# User.blueprint do
-#   email { Faker::Internet.email }
-#   password { 'password42' }
-#   password_confirmation { 'password42' }
-# end
+User.blueprint do
+  email { Faker::Internet.email }
+  password { 'password' }
+  password_confirmation { 'password' }
+end
 
-# for i in 1..20
-#   User.make!
-# end
+for i in 1..20
+  User.make!
+end
 
-# User.create( {
-#   :email => 'admin@example.com',
-#   :password => 'password',
-#   :password_confirmation => 'password' })
-
-# User.create( {
-#   :email => 'admin2@example.com',
-#   :password => 'password',
-#   :password_confirmation => 'password' })
+User.create( {
+  :email => 'admin@example.com',
+  :password => 'password',
+  :password_confirmation => 'password' })

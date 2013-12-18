@@ -9,6 +9,6 @@ module SeatPicker
     config.restricted_registration = true
     config.restricted_registration_key = 
       'LqZVYMe6PsfFBLvxcB92bm7hk5eCRZgPJPaZMnFAPgLvwWKH'
-    config.admin_email = 'jabba@clear-carbon.co.uk'
+    config.admin_email = 'admin@example.com'
   end
 end
