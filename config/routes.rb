@@ -2,6 +2,8 @@ SeatPicker::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   root 'home#index'
 
+  mount Tournament::Engine => "/tournament", :as => "tournament"
+
   resources :picker, only: [:index] do
     member do
       post :pick
