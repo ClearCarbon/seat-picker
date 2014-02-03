@@ -19,7 +19,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: seat_picker_test
+  database: seatpicker-test
   host: localhost
   pool: 5
   timeout: 5000
