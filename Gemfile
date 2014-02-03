@@ -34,3 +34,7 @@ gem "faker", "~> 1.2.0"
 gem "machinist", "~> 2.0"
 
 gem 'rails_12factor', group: :production
+
+group :development, :test do
+    gem 'rspec-rails', '~> 3.0.0.beta'
+end
