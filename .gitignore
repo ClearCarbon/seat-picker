@@ -16,3 +16,4 @@
 /tmp
 /.vagrant
 .rake_tasks~
+/config/application.rb
