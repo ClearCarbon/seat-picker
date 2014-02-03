@@ -14,16 +14,17 @@ end
 
 
 User.blueprint do
-  email { Faker::Internet.email }
+  email { Faker::Internet.safe_email }
   password { 'password' }
   password_confirmation { 'password' }
+end
+
+User.blueprint(:admin) do
+  email { 'admin@example.com' }
 end
 
 for i in 1..20
   User.make!
 end
 
-User.create( {
-  :email => 'admin@example.com',
-  :password => 'password',
-  :password_confirmation => 'password' })
+User.make!(:admin)

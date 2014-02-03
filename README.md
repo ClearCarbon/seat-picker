@@ -11,6 +11,7 @@ use case at the moment.
 ## Roadmap
 Notes on features we want to implement
 
+* Proper role management with cancan
 * Proper seat-picker/deployment separation
 * Email users on seat request / acceptance
 * Seat Manager / User Groups
