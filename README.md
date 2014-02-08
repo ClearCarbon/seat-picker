@@ -9,10 +9,5 @@ Currently very much a work in progress. I'm implementing this for a specific
 use case at the moment.
 
 ## Roadmap
-Notes on features we want to implement
+Notes on features we want to implement our found at our trello - https://trello.com/b/6rEmudXn/seat-picker
 
-* Proper role management with cancan
-* Proper seat-picker/deployment separation
-* Email users on seat request / acceptance
-* Seat Manager / User Groups
-* Improve rendering of seats so that irregular seat plans can be displayed
