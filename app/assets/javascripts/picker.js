@@ -53,8 +53,8 @@
 
   window.reload_picker = function() {
     $('#seatpicker-management').parent().load('/picker #seatpicker-management');
-    return $('#seatpicker-room').load('/picker #seatpicker-room', function() {
-      return ready;
+    $('#seatpicker-room').load('/picker #seatpicker-room', function() {
+      $(document).ready(ready);
     });
   };
 
