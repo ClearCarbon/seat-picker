@@ -7,7 +7,7 @@ Then(/^the Login form should be shown$/) do
 end
 
 Then(/^I should see "(.*?)"$/) do |text|
-  page.should have_content text
+  expect(page).to have_content text
 end
 
 Given(/^I am a new authenticated use$/) do
