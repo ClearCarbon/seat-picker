@@ -65,7 +65,7 @@ class PickerController < ApplicationController
   private
 
   def seat_params
-    params.require(:seat).permit(:user_id)
+    params.require(:seat).permit(:user_id).permit(:message)
   end
 
   def set_seat
