@@ -1,4 +1,4 @@
-<div class='seatpicker-table-row'>
+<div class='seatpicker-table-row <%= 'pull-' + pull.to_s if defined? pull %>'>
   <% seats.each_slice(2) do |table_seats| %>
     <div class='seatpicker-table-seat-group'>
 

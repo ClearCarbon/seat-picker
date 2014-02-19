@@ -10,8 +10,8 @@ $border-size: 3px;
 $seat-size: 40px;
 $table-length: 180px;
 $table-width: 75px;
-$room-width: 850px;
-$room-height: 1517px;
+$room-width: 807px;
+$room-height: 2457px;
 
 $seat-margin: $seat-size / 4;
 $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
@@ -94,19 +94,20 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
 }
 
 .seatpicker-table-row {
-  float: right;
 }
 
 .seatpicker-room {
   background-image: url('/images/plan.png');
+  background-repeat: no-repeat;
   width: $room-width;
   height: $room-height;
 }
 
 /* theme specific styles */
 .seatpicker-picker {
-  padding-right: 135px;
-  padding-top: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 400px;
 }
 
 .seatpicker-staff .seatpicker-table-row{
