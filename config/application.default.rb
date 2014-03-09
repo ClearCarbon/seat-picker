@@ -8,7 +8,7 @@ module SeatPicker
   class Application < Rails::Application
     config.restricted_registration = false
     config.restricted_registration_key = 
-      'REGISTRATION_KEY'
-    config.admin_email = 'admin@example.com'
+      'm7x6StfpPRRd8Ln7CjnkLtHZ'
+    config.admin_email = 'chris@clear-carbon.co.uk'
   end
 end
