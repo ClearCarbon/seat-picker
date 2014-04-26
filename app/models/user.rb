@@ -12,6 +12,16 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    return true
+    self.admin
+  end
+
+  def promote_to_admin!
+    self.admin = true
+    self.save
+  end
+
+  def demote_from_admin!
+    self.admin = false
+    self.save
   end
 end

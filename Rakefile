@@ -31,4 +31,16 @@ namespace :users do
       user.save
     end
   end
+
+  task :promote_admin => :environment do
+    user_email = ENV['with_email'];
+    users = User.where(email: user_email)
+    users.first.promote_to_admin!
+  end
+
+  task :demote_admin => :environment do
+    user_email = ENV['with_email'];
+    users = User.where(email: user_email)
+    users.first.demote_from_admin!
+  end
 end
