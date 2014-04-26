@@ -13,3 +13,22 @@ namespace :seats do
     end
   end
 end
+
+namespace :users do
+  task :ensure_usernames => :environment do
+    users = User.where('username is null');
+
+    users.each do |user|
+
+      if(user.email.include?('@'))
+        username = user.email.split('@')[0];
+        username = username.titleize
+      else
+        username = 'Anonymous'
+      end
+
+      user.username = username
+      user.save
+    end
+  end
+end

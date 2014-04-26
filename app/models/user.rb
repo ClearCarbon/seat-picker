@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_one :seat
   has_many :seat_requests
+  validates :username, presence: true
 
   def requested?(seat)
     SeatRequest.where(user: self, seat: seat).any?
