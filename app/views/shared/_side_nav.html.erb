@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-lg-9">
+    <%= bootstrap_flash %>
+    <%= yield %>
+  </div>
+  <div class="col-lg-3">
+    <% if user_signed_in? %>
+      <%= render '/picker/actions' %>
+    <% end %>
+    <% if content_for? :under_right_well %>
+      <%= yield :under_right_well %>
+    <% end %>
+  </div>
+</div>

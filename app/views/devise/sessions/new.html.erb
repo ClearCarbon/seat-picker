@@ -1,5 +1,4 @@
-<h2>HoG Account - Sign in</h2>
-<p>Enter your HoG account email & password.</p>
+<h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
   :html => {:role => 'form'}) do |f| %>
@@ -19,7 +18,7 @@
     </div>
   <% end -%>
 
-  <div><%= f.submit "Sign in", :class => 'btn btn-default' %></div>
+  <div><%= f.submit "Sign in", :class => 'btn btn-primary' %></div>
 <% end %>
 
 <hr class='divider'>
