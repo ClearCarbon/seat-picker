@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  after_action :verify_authorized, :except => [:index, :edit]
 
   # GET /users
   # GET /users.json
@@ -11,17 +12,20 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    authorize @user, :create?
   end
 
   # GET /users/1/edit
   def edit
     @users = User.all
+    authorize @user, :update?
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(seat_params)
+    authorize @user, :create?
 
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
@@ -33,6 +37,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize @user, :update?
     if @user.update(seat_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
@@ -44,6 +49,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+    authorize @user, :destroy?
     redirect_to users_url
   end
 
