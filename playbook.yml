@@ -1,12 +1,19 @@
 ---
- - hosts: vagrant
-   gather_facts: no
+ - hosts: default
    sudo: yes
+   vars:
+     ruby_version: ruby2.0
+     rails_postgresql_db_name: seatpicker
 
    roles:
-     - ansible/core
-     - ansible/sqlite
-     - ansible/rails
-     - ansible/postgresql
-     - { role: ansible/app, name: seat_picker, password: seat_picker }
-     - { role: ansible/ruby, version: ruby2.0 }
+     - ShadowKoBolt.core
+     - ShadowKoBolt.rails-common
+
+   tasks:
+    - name: rails install
+      command: gem install rails
+
+    - name: bundle install
+      remote_user: vagrant 
+      sudo: no
+      command: bundle install chdir=/home/vagrant/source
