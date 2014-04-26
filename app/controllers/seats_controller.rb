@@ -2,6 +2,7 @@ class SeatsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
   before_action :require_seat_admin, only: [:index, :new, :edit, :create, :delete]
+  after_action :verify_authorized, :except => [:index, :edit]
 
   # GET /seats
   # GET /seats.json
@@ -9,25 +10,23 @@ class SeatsController < ApplicationController
     @seats = Seat.order('row asc', 'number asc')
   end
 
-  # GET /seats/1
-  # GET /seats/1.json
-  def show
-  end
-
   # GET /seats/new
   def new
     @seat = Seat.new
+    authorize @seat, :create?
   end
 
   # GET /seats/1/edit
   def edit
     @users = User.all
+    authorize @seat, :create?
   end
 
   # POST /seats
   # POST /seats.json
   def create
     @seat = Seat.new(seat_params)
+    authorize @seat, :create?
 
     respond_to do |format|
       if @seat.save
@@ -43,6 +42,7 @@ class SeatsController < ApplicationController
   # PATCH/PUT /seats/1
   # PATCH/PUT /seats/1.json
   def update
+    authorize @seat, :update?
     respond_to do |format|
       if @seat.update(seat_params)
         format.html { redirect_to @seat, notice: 'Seat was successfully updated.' }
@@ -57,6 +57,7 @@ class SeatsController < ApplicationController
   # DELETE /seats/1
   # DELETE /seats/1.json
   def destroy
+    authorize @seat, :destroy?
     @seat.destroy
     respond_to do |format|
       format.html { redirect_to seats_url }

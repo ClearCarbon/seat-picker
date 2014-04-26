@@ -7,8 +7,6 @@ Bundler.require(:default, Rails.env)
 module SeatPicker
   class Application < Rails::Application
     config.restricted_registration = false
-    config.restricted_registration_key = 
-      'CHANGEME'
-    config.admin_email = 'admin@example.com'
+    config.restricted_registration_key = 'CHANGEME'
   end
 end

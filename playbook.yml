@@ -17,3 +17,6 @@
       remote_user: vagrant 
       sudo: no
       command: bundle install chdir=/home/vagrant/source
+
+    - name: pry install
+      command: gem install pry
