@@ -1,7 +1,6 @@
 class SeatsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
-  before_action :require_seat_admin, only: [:index, :new, :edit, :create, :delete]
   after_action :verify_authorized, :except => [:index, :edit]
 
   # GET /seats

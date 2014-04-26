@@ -14,5 +14,5 @@ SeatPicker::Application.routes.draw do
       get  :donate_seat
     end
   end
-  resources :seats
+  resources :seats, :users
 end
