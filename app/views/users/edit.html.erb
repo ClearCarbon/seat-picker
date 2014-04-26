@@ -2,5 +2,19 @@
 
 <%= render 'users/form' %>
 
+<div class='buffer-top'>
+<% if(current_user.id != @user.id) %>
+  <% if(@user.admin?) %>
+    <%= form_for @user, :url => demote_from_admin_user_path(@user), :method => "post" do |f| %>
+      <div><%= f.submit "Demote From Admin", :class => 'btn btn-primary'  %></div>
+    <% end %>
+  <% else %>
+    <%= form_for @user, :url => promote_to_admin_user_path(@user), :method => "post" do |f| %>
+      <div><%= f.submit "Promote To Admin", :class => 'btn btn-primary'  %></div>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+
 <hr class='divider'>
 <%= link_to 'Back', seats_path %>

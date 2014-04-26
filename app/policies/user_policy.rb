@@ -1,13 +1,21 @@
-class UserPolicy < Struct.new(:user, :user)
+class UserPolicy < Struct.new(:current_user, :user)
   def update?
-    user.admin?
+    current_user.admin?
   end
 
   def create?
-    user.admin?
+    current_user.admin?
   end
 
   def destroy?
-    user.admin?
+    current_user.admin?
+  end
+
+  def promote?
+    if(current_user.id == user.id)
+      return false
+    end
+
+    current_user.admin?
   end
 end

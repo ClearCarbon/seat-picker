@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, 
+                                  :promote_to_admin, :demote_from_admin]
   before_filter :authenticate_user!
   after_action :verify_authorized, :except => [:index, :edit]
 
@@ -51,6 +52,18 @@ class UsersController < ApplicationController
     @user.destroy
     authorize @user, :destroy?
     redirect_to users_url
+  end
+
+  def promote_to_admin
+    authorize @user, :promote?
+    @user.promote_to_admin!
+    redirect_to edit_user_path(@user)
+  end
+
+  def demote_from_admin
+    authorize @user, :promote?
+    @user.demote_from_admin!
+    redirect_to edit_user_path(@user)
   end
 
   private

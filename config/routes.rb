@@ -14,5 +14,13 @@ SeatPicker::Application.routes.draw do
       get  :donate_seat
     end
   end
-  resources :seats, :users
+
+  resources :users do
+    member do
+      post :promote_to_admin
+      post :demote_from_admin
+    end
+  end
+
+  resources :seats
 end
