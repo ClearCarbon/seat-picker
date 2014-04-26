@@ -15,12 +15,14 @@ end
 
 User.blueprint do
   email { Faker::Internet.safe_email }
+  username { Faker::Internet.user_name }
   password { 'password' }
   password_confirmation { 'password' }
 end
 
 User.blueprint(:admin) do
   email { 'admin@example.com' }
+  username { 'Admin' }
 end
 
 for i in 1..20
