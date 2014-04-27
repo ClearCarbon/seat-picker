@@ -23,7 +23,7 @@ class UserPolicy < Struct.new(:current_user, :user)
   end
 
   def promote?
-    if(current_user.id == user.id)
+    if current_user.id == user.id
       return false
     end
 
