@@ -1,4 +1,15 @@
 class UserPolicy < Struct.new(:current_user, :user)
+
+  class Scope < Struct.new(:current_user, :user)
+    def resolve
+      if current_user.admin?
+        user.all
+      else
+        user.where(:id => current_user.id)
+      end
+    end
+  end
+
   def update?
     current_user.admin?
   end

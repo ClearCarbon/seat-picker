@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, 
                                   :promote_to_admin, :demote_from_admin]
   before_filter :authenticate_user!
-  after_action :verify_authorized, :except => [:index, :edit]
+  after_action :verify_authorized, :except => [:index]
+  after_action :verify_policy_scoped, :only => :index
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.order('username asc')
+    @users = policy_scope(User)
   end
 
   # GET /users/new
@@ -18,7 +19,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @users = User.all
     authorize @user, :update?
   end
 

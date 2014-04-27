@@ -1,7 +1,7 @@
 class SeatsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, :except => [:index, :edit]
+  after_action :verify_authorized, :except => [:index]
 
   # GET /seats
   # GET /seats.json
@@ -18,7 +18,7 @@ class SeatsController < ApplicationController
   # GET /seats/1/edit
   def edit
     @users = User.all
-    authorize @seat, :create?
+    authorize @seat, :update?
   end
 
   # POST /seats
