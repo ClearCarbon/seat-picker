@@ -1,7 +1,7 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 <p>Update your account details.</p>
 
-<%= avatar_for current_user %>
+<%= render 'users/avatar_edit' %>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), 
              :html => { :method => :put, :role => 'form' }) do |f| %>
