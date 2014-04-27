@@ -8,6 +8,7 @@ class PickerController < ApplicationController
 
   def pick
     respond_to do |format|
+      authorize @seat, :pick?
       if @seat.update_attributes(user_id: current_user.id)
         format.json { head :no_content }
       else
@@ -39,6 +40,7 @@ class PickerController < ApplicationController
 
   def give_up
     respond_to do |format|
+      authorize current_user.seat, :give_up?
       if current_user.seat.update_attributes(user_id: nil)
         format.json { head :no_content }
       else

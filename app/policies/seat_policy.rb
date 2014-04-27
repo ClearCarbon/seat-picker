@@ -1,8 +1,8 @@
 class SeatPolicy < Struct.new(:user, :seat)
 
-  class Scope < Struct.new(:current_user, :user)
+  class Scope < Struct.new(:user, :seat)
     def resolve
-      user.all
+      seat.all
     end
   end
 
@@ -16,5 +16,13 @@ class SeatPolicy < Struct.new(:user, :seat)
 
   def destroy?
     user.admin?
+  end
+
+  def pick?
+    seat.user.nil?
+  end
+
+  def give_up?
+    seat.user.id == user.id
   end
 end
