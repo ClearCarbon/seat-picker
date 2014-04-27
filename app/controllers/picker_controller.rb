@@ -30,6 +30,7 @@ class PickerController < ApplicationController
   def cancel_request
     respond_to do |format|
       seat_request = current_user.seat_requests.where(seat_id: @seat.id).first
+      authorize seat_request, :cancel_request?
       if seat_request && seat_request.destroy
         format.json { head :no_content }
       else
@@ -52,6 +53,7 @@ class PickerController < ApplicationController
   def donate_seat
     respond_to do |format|
       seat_request = SeatRequest.find(params[:seat_request_id])
+      authorize seat_request, :donate?
       if seat_request.seat.user == current_user
         seat_request.seat.user = seat_request.user
         seat_request.seat.save

@@ -11,7 +11,6 @@ SeatPicker::Application.routes.draw do
     collection do 
       post :give_up
       post :donate_seat
-      get  :donate_seat
     end
   end
 
