@@ -1,11 +1,14 @@
 class SeatsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, :except => [:index]
+  after_action :verify_authorized
   after_action :verify_policy_scoped, :only => :index
 
   def index
     @seats = policy_scope(Seat)
+    authorize @seats, :create?
+    authorize @seats, :update?
+    authorize @seats, :destroy?
   end
 
   def new
@@ -20,12 +23,13 @@ class SeatsController < ApplicationController
 
   def create
     @seat = Seat.new(seat_params)
-    authorize @seat, :create?
+    authorize @seat
 
     respond_to do |format|
       if @seat.save
-        format.html { redirect_to @seat, notice: 'Seat was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @seat }
+        format.html { redirect_to action: "index", 
+                      notice: 'Seat was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @seat }
       else
         format.html { render action: 'new' }
         format.json { render json: @seat.errors, status: :unprocessable_entity }
