@@ -3,7 +3,9 @@
    sudo: yes
    vars:
      ruby_version: ruby2.0
-     rails_postgresql_db_name: seatpicker
+     rails_postgresql_db_name: seatpicker 
+     postgres_version: 9.1
+     distro: ubuntu
 
    roles:
      - ShadowKoBolt.core
@@ -20,3 +22,7 @@
 
     - name: pry install
       command: gem install pry
+
+    # seeding currently fails with a bundler exception
+    # - name: create database
+    #   command: bundle exec rake db:create && rake db:migrate && rake db:seed chdir=/home/vagrant/source

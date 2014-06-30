@@ -24,7 +24,8 @@ class SeatsController < ApplicationController
 
     respond_to do |format|
       if @seat.save
-        format.html { redirect_to @seat, notice: 'Seat was successfully created.' }
+        format.html { redirect_to action: "index", 
+                      notice: 'Seat was successfully created.' }
         format.json { render action: 'show', status: :created, location: @seat }
       else
         format.html { render action: 'new' }

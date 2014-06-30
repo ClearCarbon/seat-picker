@@ -5,38 +5,30 @@ class UsersController < ApplicationController
   after_action :verify_authorized, :except => [:index]
   after_action :verify_policy_scoped, :only => :index
 
-  # GET /users
-  # GET /users.json
   def index
     @users = policy_scope(User)
   end
 
-  # GET /users/new
   def new
     @user = User.new
     authorize @user, :create?
   end
 
-  # GET /users/1/edit
   def edit
     authorize @user, :update?
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(seat_params)
     authorize @user, :create?
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to action: "index", notice: 'User was successfully created.'
     else
       render action: 'new'
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     authorize @user, :update?
     if @user.update(seat_params)
@@ -46,8 +38,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     authorize @user, :destroy?
@@ -67,7 +57,6 @@ class UsersController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
   end
