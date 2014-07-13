@@ -8,10 +8,12 @@
     <a class="navbar-brand" href="/">Seat Picker</a>
     <div class="nav-collapse navbar-responsive-collapse pull-right">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", "/"  %></li>
+        <% if !user_signed_in? %>
+          <li><%= link_to "Home", "/"  %></li>
+        <% end %>
 
         <% if user_signed_in? %>
-          <li><%= link_to "Picker", "/picker"  %></li>
+          <li><%= link_to "Picker", "/"  %></li>
 
           <% if admin? %>
             <li class="dropdown">
