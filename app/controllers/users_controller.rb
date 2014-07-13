@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
 
   def index
-    @users = policy_scope(User)
+    @users = policy_scope(User).order(:email)
   end
 
   def new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     authorize @user, :create?
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user, notice: 'User successfully created.'
     else
       render action: 'new'
     end
@@ -31,8 +31,8 @@ class UsersController < ApplicationController
 
   def update
     authorize @user, :update?
-    if @user.update(seat_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    if @user.update(user_params)
+      redirect_to action: :index, notice: 'User successfully updated'
     else
       render action: 'edit'
     end
@@ -61,8 +61,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def seat_params
-    params.require(:seat).permit(:email, :username)
+  def user_params
+    params.require(:user).permit(:email, :username, :seat)
   end
 
 end

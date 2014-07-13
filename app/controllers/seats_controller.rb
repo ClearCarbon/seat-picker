@@ -5,7 +5,7 @@ class SeatsController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
 
   def index
-    @seats = policy_scope(Seat)
+    @seats = policy_scope(Seat).order(:row).order(:number)
     authorize @seats, :create?
     authorize @seats, :update?
     authorize @seats, :destroy?
@@ -28,7 +28,7 @@ class SeatsController < ApplicationController
     respond_to do |format|
       if @seat.save
         format.html { redirect_to action: "index", 
-                      notice: 'Seat was successfully created.' }
+                      notice: 'Seat successfully created.' }
         format.json { render action: 'index', status: :created, location: @seat }
       else
         format.html { render action: 'new' }
@@ -41,11 +41,13 @@ class SeatsController < ApplicationController
     authorize @seat, :update?
     respond_to do |format|
       if @seat.update(seat_params)
-        format.html { redirect_to @seat, notice: 'Seat was successfully updated.' }
+        format.html { redirect_to action: :index, 
+                      notice: 'Seat successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @seat.errors, status: :unprocessable_entity }
+        format.json { render json: @seat.errors, 
+                      status: :unprocessable_entity }
       end
     end
   end
