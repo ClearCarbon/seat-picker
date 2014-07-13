@@ -1,10 +1,22 @@
 class ApplicationController < ActionController::Base
+  layout :layout_by_resource
   include Pundit
   include ApplicationHelper
-
+  
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  protected
+
+  def layout_by_resource
+    if devise_controller? && 
+      !(controller_name == 'registrations' && action_name == 'edit')
+      "registrations"
+    else
+      "application"
+    end
+  end
 
   private
 
