@@ -22,8 +22,8 @@
         <td><% if seat.user %>
           <%= seat.user.username %>
         <% end %></td>
-        <td><%= link_to 'Edit', edit_seat_path(seat) %></td>
-        <td><%= link_to 'Delete', seat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_seat_path(seat), class: 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Delete', seat, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
