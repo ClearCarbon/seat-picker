@@ -1,11 +1,15 @@
 <% if user_signed_in? %>
   <li>
-  <%= link_to('Manage Account', edit_user_registration_path) %>
+    <%= link_to edit_user_registration_path do %>
+      <%= fa_icon 'user' %> Manage Account
+    <% end %>
   </li>
 <% else %>
-  <li>
   <% if !Rails.application.config.restricted_registration %>
-    <%= link_to('Register', new_user_registration_path)  %>
-  <% end %>
+  <li>
+    <%= link_to new_user_registration_path do %>
+      <%= fa_icon 'user' %> Register
+    <% end %>
   </li>
+  <% end %>
 <% end %>

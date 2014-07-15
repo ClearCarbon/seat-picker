@@ -1,9 +1,13 @@
 <% if user_signed_in? %>
   <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  <%= link_to destroy_user_session_path, :method => :delete do %>        
+    <%= fa_icon 'sign-out' %> Logout
+  <% end %>
   </li>
 <% else %>
   <li>
-  <%= link_to('Login', new_user_session_path)  %>  
+  <%= link_to new_user_session_path do  %>  
+    <%= fa_icon 'sign-in' %> Login
+  <% end %>
   </li>
 <% end %>

@@ -28,13 +28,12 @@ gem 'devise'
 
 gem 'draper'
 
-gem 'less-rails'
-gem 'twitter-bootstrap-rails', 
-  :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', 
-  :branch => 'bootstrap3'  
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 gem "faker", "~> 1.2.0"
 gem "machinist", "~> 2.0"
+gem 'font-awesome-rails'
 
 gem 'rails_12factor', group: :production
 
