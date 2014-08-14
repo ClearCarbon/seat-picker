@@ -19,11 +19,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(seat_params)
+    binding.pry
+    @user = User.new(user_params)
     authorize @user, :create?
 
     if @user.save
-      redirect_to @user, notice: 'User successfully created.'
+      redirect_to [:users], notice: 'User successfully created.'
     else
       render action: 'new'
     end
