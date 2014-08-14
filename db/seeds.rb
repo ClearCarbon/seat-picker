@@ -21,6 +21,11 @@ User.blueprint do
   admin { false }
 end
 
+User.blueprint(:default) do
+  email { 'user@example.com' }
+  username { 'User' }
+end
+
 User.blueprint(:admin) do
   email { 'admin@example.com' }
   username { 'Admin' }
@@ -32,3 +37,4 @@ for i in 1..20
 end
 
 User.make!(:admin)
+User.make!(:default)
