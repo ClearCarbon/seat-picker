@@ -5,7 +5,7 @@ class SeatsController < ApplicationController
   after_action :verify_policy_scoped, :only => :index
 
   def index
-    @seats = policy_scope(Seat).order(:row).order(:number)
+    @seats = policy_scope(Seat).order(:row, :number)
     authorize @seats, :create?
     authorize @seats, :update?
     authorize @seats, :destroy?
