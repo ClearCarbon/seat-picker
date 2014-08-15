@@ -1,13 +1,29 @@
-<%= form_for (@user) do |f| %>
+<% if @action_override.nil? %>
+  <%= form_for (@user) do |f| %>
 
-  <div class='form-group'><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true,
-      :class => 'form-control', :placeholder => 'Enter Email' %></div>
+    <div class='form-group'><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true,
+        :class => 'form-control', :placeholder => 'Enter Email' %></div>
 
-  <div class='form-group'><%= f.label :username %><br />
-    <%= f.text_field :username, 
-      :class => 'form-control',
-      :placeholder => 'Enter Username' %></div>
+    <div class='form-group'><%= f.label :username %><br />
+      <%= f.text_field :username, 
+        :class => 'form-control',
+        :placeholder => 'Enter Username' %></div>
 
-  <div><%= f.submit :class => 'btn btn-primary'  %></div>
+    <div><%= f.submit :class => 'btn btn-primary'  %></div>
+  <% end %>
+<% else %>
+  <%= form_for (@user), url: { action: @action_override } do |f| %>
+
+    <div class='form-group'><%= f.label :email %><br />
+      <%= f.email_field :email, :autofocus => true,
+        :class => 'form-control', :placeholder => 'Enter Email' %></div>
+
+    <div class='form-group'><%= f.label :username %><br />
+      <%= f.text_field :username, 
+        :class => 'form-control',
+        :placeholder => 'Enter Username' %></div>
+
+    <div><%= f.submit :class => 'btn btn-primary'  %></div>
+  <% end %>
 <% end %>

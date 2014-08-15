@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @action_override = 'admin_create'
     authorize @user, :create?
   end
 
@@ -18,13 +19,18 @@ class UsersController < ApplicationController
     authorize @user, :update?
   end
 
-  def create
+  #hack to fix admin create, need to move this controller
+  #to a separate namespace
+  def admin_create
     @user = User.new(user_params)
     authorize @user, :create?
+
+    @user.password = SecureRandom.hex(8)
 
     if @user.save
       redirect_to [:users], notice: 'User successfully created.'
     else
+      @action_override = 'admin_create'
       render action: 'new'
     end
   end

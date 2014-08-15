@@ -19,10 +19,13 @@ SeatPicker::Application.routes.draw do
     end
   end
 
-  resources :users do
+  resources :users, except: [:create] do
     member do
       post :promote_to_admin
       post :demote_from_admin
+    end
+    collection do
+      post :admin_create
     end
   end
 
