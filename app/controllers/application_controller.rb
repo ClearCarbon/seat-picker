@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller? && 
-      !(controller_name == 'registrations' && action_name == 'edit')
+    if devise_controller? && !user_signed_in?
       "registrations"
     else
       "application"
