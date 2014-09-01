@@ -103,13 +103,16 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
   height: $room-height;
 }
 
+.seatpicker-picker .reserved {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* theme specific styles */
 .seatpicker-picker {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 400px;
-}
-
-.seatpicker-staff .seatpicker-table-row{
-  padding-top: 30px;
 }

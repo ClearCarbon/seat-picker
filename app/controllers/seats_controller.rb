@@ -67,7 +67,7 @@ class SeatsController < ApplicationController
   end
 
   def seat_params
-    params.require(:seat).permit(:row, :number, :user_id)
+    params.require(:seat).permit(:row, :number, :reserved, :user_id)
   end
 
 end

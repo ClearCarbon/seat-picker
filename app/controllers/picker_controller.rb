@@ -19,6 +19,7 @@ class PickerController < ApplicationController
 
   def make_request
     respond_to do |format|
+      authorize @seat, :pick?
       if SeatRequest.create(user: current_user, seat: @seat)
         format.json { head :no_content }
       else

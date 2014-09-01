@@ -1,5 +1,4 @@
 ready = function() {
-  console.log('testing')
   $('[data-toggle="popover"]').popover({
     placement: 'top',
     trigger: 'manual'

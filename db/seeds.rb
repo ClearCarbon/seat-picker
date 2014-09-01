@@ -1,10 +1,9 @@
 require 'machinist/active_record'
 
-rows = {'A' => 4,
-        'B' => 4,
-        'C' => 4,
-        'D' => 4,
-        'E' => 2}
+rows = {'A' => 6,
+        'B' => 6,
+        'C' => 6,
+        'D' => 6}
 
 rows.each do |row, seats|
   for seat in 1..seats

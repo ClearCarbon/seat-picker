@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426151636) do
+ActiveRecord::Schema.define(version: 20140901112051) do
 
   create_table "seat_requests", force: true do |t|
     t.integer  "seat_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140426151636) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.boolean  "reserved"
   end
 
   add_index "seats", ["user_id"], name: "index_seats_on_user_id", using: :btree

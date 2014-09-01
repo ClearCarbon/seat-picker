@@ -19,7 +19,11 @@ class SeatPolicy < Struct.new(:user, :seat)
   end
 
   def pick?
-    seat.user.nil?
+    if seat.reserved?
+        return false
+    else
+      return seat.user.nil?
+    end
   end
 
   def give_up?
