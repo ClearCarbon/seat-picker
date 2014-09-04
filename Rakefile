@@ -7,10 +7,11 @@ SeatPicker::Application.load_tasks
 
 namespace :seats do
   task :clear => :environment do
-    seats = Seat.all;
-    seats.each do |seat|
+    Seat.all.each do |seat|
       seat.update_attributes(user_id: nil)
     end
+
+    SeatRequest.destroy_all
   end
 end
 
