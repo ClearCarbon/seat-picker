@@ -39,9 +39,11 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'nokogiri'
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'pry'
+  gem 'factory_girl_rails'
 end
