@@ -25,4 +25,25 @@ describe 'As an admin' do
     expect(page).to have_content 'New Name'
   end
 
+  specify 'I can delete a user' do
+    visit '/'
+    click_link 'Users'
+    within(:css, "#user#{user.id}") do
+      click_button 'Delete'
+    end
+    expect(page).to_not have_content 'bob@example.com'
+    expect(page).to_not have_content user.username
+  end
+
+  specify 'I can create a user' do
+    visit '/'
+    click_link 'Users'
+    click_link 'New User'
+    fill_in 'Username', with: 'New User'
+    fill_in 'Email', with: 'test@example.com'
+    click_button 'Create User'
+    expect(page).to have_content 'New User'
+    expect(page).to have_content 'test@example.com'
+  end
+
 end

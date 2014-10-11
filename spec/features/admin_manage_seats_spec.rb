@@ -23,4 +23,23 @@ describe 'As an admin' do
     expect(page).to have_content 'B1'
   end
 
+  specify 'I can delete a seat' do
+    visit '/'
+    click_link 'Seats'
+    within(:css, "#seat#{seat.id}") do
+      click_button 'Delete'
+    end
+    expect(page).to_not have_content 'B1'
+  end
+
+  specify 'I can create a seat' do
+    visit '/'
+    click_link 'Seats'
+    click_link 'New Seat'
+    fill_in 'Row', with: 'Z'
+    fill_in 'Number', with: '1'
+    click_button 'Create Seat'
+    expect(page).to have_content 'Z1'
+  end
+
 end
