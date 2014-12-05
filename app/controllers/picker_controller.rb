@@ -1,6 +1,8 @@
 class PickerController < ApplicationController
   before_action :authenticate_user!
   before_action :set_seat, only: [:pick, :make_request, :cancel_request]
+  respond_to :html, only: [:index, :donate_seat]
+  respond_to :json, except: [:index]
 
   def index
     @seats = SeatDecorator.decorate_collection(Seat.order('row asc', 'number asc'))

@@ -1,4 +1,7 @@
-ready = function() {
+ready = function(scrollY) {
+  $('[data-toggle="popover"]').popover( 'destroy' );
+  $('[data-toggle="popover"]').off();
+
   $('[data-toggle="popover"]').popover({
     placement: 'top',
     trigger: 'manual'
@@ -14,6 +17,8 @@ ready = function() {
         $(clicked).popover('toggle');
       }
     });
+
+    $(window).scrollTop(scrollY);
 
     return false;
   });
@@ -52,9 +57,9 @@ donate_seat = function(request_id) {
 };
 
 reload_picker = function() {
+  var scrollY = $(window).scrollTop();
   $('#seatpicker-management').parent().load('/picker #seatpicker-management');
-  $('#seatpicker-room').load('/picker #seatpicker-room');
+  $('#seatpicker-room').load('/picker #seatpicker-room', ready.call(scrollY));
 };
 
 $(document).ready(ready);
-$(document).on('page:load', ready);
