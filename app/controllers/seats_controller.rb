@@ -13,12 +13,13 @@ class SeatsController < ApplicationController
   end
 
   def new
+    @users = User.all.decorate
     @seat = Seat.new
     authorize @seat, :create?
   end
 
   def edit
-    @users = User.all
+    @users = User.all.decorate
     authorize @seat, :update?
   end
 

@@ -9,12 +9,13 @@
       %th
   %tbody
     - @seats.each do |seat|
-      %tr{:id => "seat#{seat.id}"}
-        %td
+      %tr[seat.source]
+        %td.col-md-3
           = seat.name
-        %td
+        %td.col-md-3
           - if seat.user
             = seat.user.username
-        %td= link_to 'Edit', edit_seat_path(seat), class: 'btn btn-default btn-xs'
-        %td= button_to 'Delete', seat, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
-%br/
+        %td.col-md-6
+          .btn-group.pull-right
+            = link_to 'Delete', seat, method: :delete, data: { confirm: "Are you sure you want to delete the seat '#{seat.name}'?" }, class: 'btn btn-danger btn-xs'
+            = link_to 'Edit', edit_seat_path(seat), class: 'btn btn-default btn-xs'

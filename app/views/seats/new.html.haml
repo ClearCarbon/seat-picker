@@ -1,17 +1,2 @@
 %h1 New seat
-= form_for (@seat) do |f|
-  .form-group
-    = f.label :row
-    %br/
-    = f.text_field :row,                                    |
-      :class => 'form-control', :placeholder => 'Enter Row' |
-  .form-group
-    = f.label :number
-    %br/
-    = f.number_field :number,                                  |
-      :class => 'form-control', :placeholder => 'Enter Number' |
-  .form-group
-    = f.label :reserved
-    %br/
-    = f.check_box :reserved
-  %div= f.submit "Create Seat", :class => 'btn btn-primary'
+= render 'form'

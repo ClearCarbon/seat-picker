@@ -1,6 +1,6 @@
 require 'rails_helper.rb'
 
-describe 'As an admin' do 
+describe 'As an admin' do
   let(:admin) { FactoryGirl.create :user, admin: true }
   let!(:seat) { FactoryGirl.create :seat }
 
@@ -13,29 +13,22 @@ describe 'As an admin' do
   end
 
   specify 'I can edit a seat' do
-    visit '/'
-    click_link 'Seats'
-    within(:css, "#seat#{seat.id}") do
-      click_link 'Edit'
-    end
+    visit edit_seat_path(seat)
     fill_in 'Row', with: 'B'
     click_button 'Update Seat'
     expect(page).to have_content 'B1'
   end
 
   specify 'I can delete a seat' do
-    visit '/'
-    click_link 'Seats'
-    within(:css, "#seat#{seat.id}") do
-      click_button 'Delete'
+    visit seats_path
+    within(:css, "#seat_#{seat.id}") do
+      click_link 'Delete'
     end
     expect(page).to_not have_content 'B1'
   end
 
   specify 'I can create a seat' do
-    visit '/'
-    click_link 'Seats'
-    click_link 'New Seat'
+    visit new_seat_path
     fill_in 'Row', with: 'Z'
     fill_in 'Number', with: '1'
     click_button 'Create Seat'
