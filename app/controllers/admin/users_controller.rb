@@ -1,9 +1,10 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, 
+class Admin::UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy,
                                   :promote_to_admin, :demote_from_admin]
   before_filter :authenticate_user!
   after_action :verify_authorized, :except => [:index]
   after_action :verify_policy_scoped, :only => :index
+  respond_to :html
 
   def index
     @users = policy_scope(User).order(:email)
@@ -11,7 +12,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @action_override = 'admin_create'
     authorize @user, :create?
   end
 
@@ -19,47 +19,35 @@ class UsersController < ApplicationController
     authorize @user, :update?
   end
 
-  #hack to fix admin create, need to move this controller
-  #to a separate namespace
-  def admin_create
+  def create
     @user = User.new(user_params)
     authorize @user, :create?
-
     @user.password = SecureRandom.hex(8)
 
-    if @user.save
-      redirect_to [:users], notice: 'User successfully created.'
-    else
-      @action_override = 'admin_create'
-      render action: 'new'
-    end
+    StandardUpdater.new(StandardResponder.new(self)).update(@user, user_params)
   end
 
   def update
     authorize @user, :update?
-    if @user.update(user_params)
-      redirect_to action: :index, notice: 'User successfully updated'
-    else
-      render action: 'edit'
-    end
+    StandardUpdater.new(StandardResponder.new(self)).update(@user, user_params)
   end
 
   def destroy
-    @user.destroy
     authorize @user, :destroy?
-    redirect_to users_url
+
+    StandardDestroyer.new(StandardResponder.new(self)).destroy(@user)
   end
 
   def promote_to_admin
     authorize @user, :promote?
     @user.promote_to_admin!
-    redirect_to edit_user_path(@user)
+    redirect_to edit_admin_user_path(@user)
   end
 
   def demote_from_admin
     authorize @user, :promote?
     @user.demote_from_admin!
-    redirect_to edit_user_path(@user)
+    redirect_to edit_admin_user_path(@user)
   end
 
   private

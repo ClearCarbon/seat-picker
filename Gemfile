@@ -24,11 +24,13 @@ end
 
 
 gem 'devise'
-
+gem 'simple_form'
 gem 'draper'
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'epi_js'
+gem 'byebug'
 
 gem "faker", "~> 1.2.0"
 gem "machinist", "~> 2.0"

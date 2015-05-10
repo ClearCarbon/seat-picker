@@ -8,5 +8,6 @@ module SeatPicker
   class Application < Rails::Application
     config.restricted_registration = false
     config.restricted_registration_key = 'CHANGEME'
+    config.autoload_paths += %W( #{config.root}/app/services )
   end
 end

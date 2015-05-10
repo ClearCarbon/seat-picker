@@ -1,0 +1,9 @@
+%h1
+  = "Editing '#{@user.username}'"
+= render 'admin/users/form'
+
+- unless @user.id == current_user.id
+  - if @user.admin?
+    = link_to 'Demote', demote_from_admin_admin_user_path(@user), method: :post, class: 'btn btn-default'
+  - else
+    = link_to 'Promote', promote_to_admin_admin_user_path(@user), method: :post, class: 'btn btn-default'
