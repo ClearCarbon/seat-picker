@@ -7,7 +7,7 @@ describe 'As a user' do
 
   specify 'I can navigate to my account page' do
     visit '/'
-    click_link 'Account'
+    click_link 'Update details'
     expect(page).to have_content 'Manage Account'
   end
 
@@ -27,8 +27,9 @@ describe 'As a user' do
   end
 
   specify 'I can delete my account' do
-    visit edit_user_registration_path
-    click_button 'Cancel my account'
+    visit cancel_account_users_path
+    click_link 'Cancel my account'
     expect(User.all.count).to eq 0
+    expect(page).to have_content "Your account has been deleted."
   end
 end

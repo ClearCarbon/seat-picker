@@ -19,6 +19,10 @@ SeatPicker::Application.routes.draw do
     end
   end
 
+  resources :users, only: [:destroy] do
+    get :cancel_account, on: :collection
+  end
+
   namespace :admin do
     resources :users do
       member do

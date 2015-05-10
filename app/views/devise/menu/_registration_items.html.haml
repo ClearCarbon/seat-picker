@@ -1,8 +1,17 @@
 - if user_signed_in?
-  %li
-    = link_to edit_user_registration_path do
-      = fa_icon 'user'
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      = fa_icon 'chevron-down'
       Account
+    %ul.dropdown-menu
+      %li
+        = link_to edit_user_registration_path do
+          = fa_icon 'user'
+          Update details
+      %li
+        = link_to cancel_account_users_path do
+          = fa_icon 'stop'
+          Cancel account
 - else
   - if !Rails.application.config.restricted_registration
     %li

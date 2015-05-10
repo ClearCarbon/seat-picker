@@ -19,7 +19,7 @@ class UserPolicy < Struct.new(:current_user, :user)
   end
 
   def destroy?
-    current_user.admin? && current_user.id != user.id
+    current_user.admin? || current_user.id == user.id
   end
 
   def promote?

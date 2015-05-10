@@ -1,0 +1,12 @@
+%h1 Cancel account
+
+%p
+  Unhappy? We're sorry to see you go, but respect your right to
+  control your own data.
+%p
+  %strong Warning this deletion is permanent your data can not be recovered.
+= link_to "Cancel my account",            |
+  user_path(@user),         |
+  :data => { :confirm => "Are you sure you wish to delete your account?" }, |
+  :method => :delete,                       |
+  :class => 'btn btn-default'               |
