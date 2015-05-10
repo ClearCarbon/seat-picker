@@ -1,0 +1,20 @@
+%div
+  #seatpicker-management.well
+    %h4 Seat Management
+    %ul.nav.nav-pills.nav-stacked
+      - if current_user.seat
+        %li
+          = link_to 'Give up my seat', '#', onclick: "give_up_seat();"
+      - elsif !current_user.seat
+        %li
+          You currently have no seat.
+    - if current_user.seat_requests.any?
+      #my-seat-requests
+        Your have requested the following #{'seat'.pluralize(current_user.seat_requests.count)}:
+        \#{current_user.seat_requests.collect{|seat_request| seat_request.seat.decorate.name }.to_sentence}
+    - if current_user.seat && current_user.seat.seat_requests.any?
+      #seat-requests
+        %ul.nav.nav-pills.nav-stacked
+          - current_user.seat.seat_requests.each do |seat_request|
+            %li
+              = link_to "Give my seat to #{seat_request.user.email}", '#', onclick: "donate_seat(#{seat_request.id});"

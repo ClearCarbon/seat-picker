@@ -1,0 +1,28 @@
+- if @action_override.nil?
+  = form_for (@user) do |f|
+    .form-group
+      = f.label :email
+      %br/
+      = f.email_field :email, :autofocus => true,               |
+        :class => 'form-control', :placeholder => 'Enter Email' |
+    .form-group
+      = f.label :username
+      %br/
+      = f.text_field :username,          |
+        :class => 'form-control',        |
+        :placeholder => 'Enter Username' |
+    %div= f.submit :class => 'btn btn-primary'
+- else
+  = form_for (@user), url: { action: @action_override } do |f|
+    .form-group
+      = f.label :email
+      %br/
+      = f.email_field :email, :autofocus => true,               |
+        :class => 'form-control', :placeholder => 'Enter Email' |
+    .form-group
+      = f.label :username
+      %br/
+      = f.text_field :username,          |
+        :class => 'form-control',        |
+        :placeholder => 'Enter Username' |
+    %div= f.submit :class => 'btn btn-primary'

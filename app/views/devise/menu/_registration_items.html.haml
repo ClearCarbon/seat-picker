@@ -1,0 +1,11 @@
+- if user_signed_in?
+  %li
+    = link_to edit_user_registration_path do
+      = fa_icon 'user'
+      Manage Account
+- else
+  - if !Rails.application.config.restricted_registration
+    %li
+      = link_to new_user_registration_path do
+        = fa_icon 'user'
+        Register

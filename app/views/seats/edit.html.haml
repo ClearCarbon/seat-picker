@@ -1,0 +1,22 @@
+%h1 Editing seat
+= form_for (@seat) do |f|
+  .form-group
+    = f.label :row
+    %br/
+    = f.text_field :row,       |
+      :class => 'form-control' |
+  .form-group
+    = f.label :number
+    %br/
+    = f.number_field :number,  |
+      :class => 'form-control' |
+  .form-group
+    = f.label :user
+    %br/
+    = f.collection_select :user_id, @users, :id, :email, |
+      :class => 'form-control', :include_blank => true   |
+  .form-group
+    = f.label :reserved
+    %br/
+    = f.check_box :reserved
+  %div= f.submit "Update Seat", :class => 'btn btn-primary'

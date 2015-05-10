@@ -1,0 +1,9 @@
+.row
+  .col-lg-9
+    = render 'shared/flash_messages'
+    = yield
+  .col-lg-3
+    - if user_signed_in?
+      = render '/picker/actions'
+    - if content_for? :under_right_well
+      = yield :under_right_well

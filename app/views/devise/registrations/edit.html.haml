@@ -1,0 +1,58 @@
+%h2 Manage Account
+%p Update your account details.
+= render 'users/avatar_edit'
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), |
+  :html => { :method => :put, :role => 'form' }) do |f|                              |
+  = devise_error_messages!
+  .form-group
+    = f.label :email
+    %br/
+    = f.email_field :email, :autofocus => true,               |
+      :class => 'form-control', :placeholder => 'Enter Email' |
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .form-group
+    = f.label :username
+    %br/
+    = f.text_field :username,          |
+      :class => 'form-control',        |
+      :placeholder => 'Enter Username' |
+  .form-group
+    = f.label :current_password
+    %i (we need your current password to confirm your changes)
+    %br/
+    = f.password_field :current_password, :class => 'form-control'
+  #demo.collapse.out
+    .form-group
+      = f.label :password
+      %i (leave blank if you don't want to change it)
+      %br/
+      = f.password_field :password, :autocomplete => "off", |
+        :class => 'form-control'                            |
+    .form-group
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation, |
+        :class => 'form-control'                 |
+  %button.btn.btn-danger{"data-target" => "#demo", "data-toggle" => "collapse", :type => "button"}
+    Change Password
+  %div= f.submit "Update", :class => 'btn btn-primary buffer-top'
+#accordion.panel-group.buffer-top
+  .panel.panel-default
+    .panel-heading
+      %h4.panel-title
+        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"}
+          Cancel my account
+    #collapseOne.panel-collapse.collapse.out
+      .panel-body
+        %p
+          Unhappy? We're sorry to see you go, but respect your right to
+          control your own data.
+        %p
+          %strong Warning this deletion is permanent your data can not be recovered
+        = button_to "Cancel my account",            |
+          registration_path(resource_name),         |
+          :data => { :confirm => "Are you sure?" }, |
+          :method => :delete,                       |
+          :class => 'btn btn-default'               |

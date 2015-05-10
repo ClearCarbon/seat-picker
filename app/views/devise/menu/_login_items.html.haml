@@ -1,0 +1,10 @@
+- if user_signed_in?
+  %li
+    = link_to destroy_user_session_path, :method => :delete do
+      = fa_icon 'sign-out'
+      Logout
+- else
+  %li
+    = link_to new_user_session_path do
+      = fa_icon 'sign-in'
+      Login

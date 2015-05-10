@@ -1,0 +1,21 @@
+%h1 Seats
+= link_to "New Seat", new_seat_path, :method => :get, |
+  :class => 'btn btn-primary pull-right'              |
+%table.table.table-striped
+  %thead
+    %tr
+      %th Seat
+      %th Attendee
+      %th
+      %th
+  %tbody
+    - @seats.each do |seat|
+      %tr{:id => "seat#{seat.id}"}
+        %td
+          = seat.name
+        %td
+          - if seat.user
+            = seat.user.username
+        %td= link_to 'Edit', edit_seat_path(seat), class: 'btn btn-default btn-xs'
+        %td= button_to 'Delete', seat, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+%br/

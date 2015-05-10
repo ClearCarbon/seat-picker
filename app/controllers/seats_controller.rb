@@ -9,6 +9,7 @@ class SeatsController < ApplicationController
     authorize @seats, :create?
     authorize @seats, :update?
     authorize @seats, :destroy?
+    @seats = @seats.decorate
   end
 
   def new
@@ -27,7 +28,7 @@ class SeatsController < ApplicationController
 
     respond_to do |format|
       if @seat.save
-        format.html { redirect_to action: "index", 
+        format.html { redirect_to action: "index",
                       notice: 'Seat successfully created.' }
         format.json { render action: 'index', status: :created, location: @seat }
       else
@@ -41,12 +42,12 @@ class SeatsController < ApplicationController
     authorize @seat, :update?
     respond_to do |format|
       if @seat.update(seat_params)
-        format.html { redirect_to action: :index, 
+        format.html { redirect_to action: :index,
                       notice: 'Seat successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @seat.errors, 
+        format.json { render json: @seat.errors,
                       status: :unprocessable_entity }
       end
     end

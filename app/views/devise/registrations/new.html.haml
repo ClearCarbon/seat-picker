@@ -1,0 +1,35 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Register
+  .panel-body
+    = form_for(resource, :as => resource_name,  |
+      :url => registration_path(resource_name), |
+      :html => {:role => 'form'}) do |f|        |
+      = devise_error_messages!
+      = hidden_field_tag :key, params[:key]
+      .form-group
+        = f.label :email
+        %br/
+        = f.email_field :email, :autofocus => true, |
+          :class => 'form-control',                 |
+          :placeholder => 'Enter email'             |
+      .form-group
+        = f.label :username
+        %br/
+        = f.text_field :username, :autofocus => true, |
+          :class => 'form-control',                   |
+          :placeholder => 'Enter Username'            |
+      .form-group
+        = f.label :password
+        %br/
+        = f.password_field :password,      |
+          :class => 'form-control',        |
+          :placeholder => 'Enter password' |
+      .form-group
+        = f.label :password_confirmation
+        %br/
+        = f.password_field :password_confirmation, |
+          :class => 'form-control',                |
+          :placeholder => 'Confirm password'       |
+      %div= f.submit "Register", :class => 'btn btn-primary'
+= render "devise/shared/links"
