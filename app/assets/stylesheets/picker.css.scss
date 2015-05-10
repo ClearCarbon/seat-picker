@@ -10,8 +10,6 @@ $border-size: 3px;
 $seat-size: 40px;
 $table-length: 180px;
 $table-width: 75px;
-$room-width: 807px;
-$room-height: 2457px;
 
 $seat-margin: $seat-size / 4;
 $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
@@ -97,10 +95,9 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
 }
 
 .seatpicker-room {
-  background-image: url('/images/plan.png');
-  background-repeat: no-repeat;
-  width: $room-width;
-  height: $room-height;
+  @extend .clearfix;
+  padding-bottom: 30px;
+  padding-top: 20px
 }
 
 .seatpicker-picker .reserved {
@@ -114,5 +111,4 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
 .seatpicker-picker {
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 400px;
 }
