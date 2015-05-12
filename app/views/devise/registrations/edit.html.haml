@@ -39,6 +39,8 @@
       %br/
       = f.password_field :password_confirmation, |
         :class => 'form-control'                 |
-  %button.btn.btn-danger{"data-target" => "#demo", "data-toggle" => "collapse", :type => "button"}
+  %button.btn.btn-default{"data-target" => "#demo", "data-toggle" => "collapse", :type => "button"}
     Change Password
-  %div= f.submit "Update", :class => 'btn btn-primary buffer-top'
+
+  .pull-right
+    %div= f.submit "Update", :class => 'btn btn-primary'

@@ -34,6 +34,7 @@ gem 'epi_js'
 gem "faker", "~> 1.2.0"
 gem "machinist", "~> 2.0"
 gem 'font-awesome-rails'
+gem 'virtus'
 
 gem 'rails_12factor', group: :production
 
