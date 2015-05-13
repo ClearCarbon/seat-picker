@@ -6,21 +6,21 @@ describe 'As an admin' do
 
   before { login_as admin }
 
-  specify 'I can vew a list of all seats' do
+  specify 'I can navigate to a list of all seats' do
     visit '/'
     click_link 'Seats'
     expect(page).to have_content 'A1'
   end
 
   specify 'I can edit a seat' do
-    visit edit_seat_path(seat)
+    visit edit_admin_seat_path(seat)
     fill_in 'Row', with: 'B'
     click_button 'Update Seat'
     expect(page).to have_content 'B1'
   end
 
   specify 'I can delete a seat' do
-    visit seats_path
+    visit admin_seats_path
     within(:css, "#seat_#{seat.id}") do
       click_link 'Delete'
     end
@@ -28,7 +28,7 @@ describe 'As an admin' do
   end
 
   specify 'I can create a seat' do
-    visit new_seat_path
+    visit new_admin_seat_path
     fill_in 'Row', with: 'Z'
     fill_in 'Number', with: '1'
     click_button 'Create Seat'

@@ -1,4 +1,4 @@
-= simple_form_for [@seat] do |f|
+= simple_form_for [:admin, @seat] do |f|
   = f.input :row, placeholder: 'Enter seat row letter'
   = f.input :number, placeholder: 'Enter seat row number'
   = f.input :user_id, collection: @users.map {|user| [user.summary, user.id] }

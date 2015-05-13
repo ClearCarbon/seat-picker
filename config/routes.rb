@@ -30,7 +30,7 @@ SeatPicker::Application.routes.draw do
         post :demote_from_admin
       end
     end
+    
+    resources :seats
   end
-
-  resources :seats
 end
