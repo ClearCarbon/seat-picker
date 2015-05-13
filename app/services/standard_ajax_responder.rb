@@ -4,12 +4,10 @@ class StandardAjaxResponder
   end
 
   def success(resource)
-    @controller.current_resource = resource
     render_success(resource)
   end
 
   def failure(resource)
-    @controller.current_resource = resource
     render_failure(resource)
   end
 

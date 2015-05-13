@@ -1,0 +1,18 @@
+%div
+  #seatpicker-management.well
+    %h4 Seat Management
+    - if current_user.seat
+      = link_to 'Give up my seat', '#', onclick: "give_up_seat();", class: 'btn btn-default'
+    - elsif !current_user.seat
+      %p You currently have no seat.
+    - if current_user.seat_requests.any?
+      #my-seat-requests
+        Your have requested the following #{'seat'.pluralize(current_user.seat_requests.count)}:
+        \#{current_user.seat_requests.collect{|seat_request| seat_request.seat.decorate.name }.to_sentence}
+    - if current_user.seat && current_user.seat.seat_requests.any?
+      #seat-requests
+        - current_user.seat.seat_requests.each do |seat_request|
+          .buffer-top
+            %p
+              = "#{seat_request.user.username} has requested your seat, you can give them your seat by clicking below."
+            = link_to "Give them your seat", '#', onclick: "donate_seat(#{seat_request.id});", title: "Give your seat to #{seat_request.user.username}", class: 'btn btn-primary'

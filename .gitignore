@@ -17,3 +17,4 @@
 /.vagrant
 .rake_tasks~
 /.rspec
+.DS_Store

@@ -1,3 +1,114 @@
-// Place all the styles related to the Seats controller here.
+// Place all the styles related to the picker controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$background: #ddd;
+$border-color: #aaa;
+$selected-border-color: #555;
+$highlight-border-color: #428bca;
+$border-size: 3px;
+$seat-size: 40px;
+$table-length: 180px;
+$table-width: 75px;
+
+$seat-margin: $seat-size / 4;
+$seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
+
+.seatpicker-object {
+  background-color: $background;
+  border: $border-size solid $border-color;
+}
+
+.selected span {
+  color: $selected-border-color !important;
+}
+
+.highlight span {
+  color: $highlight-border-color !important;
+}
+
+.seatpicker-seat {
+  @extend .seatpicker-object;
+  width: $seat-size;
+  height: $seat-size;
+  margin: $seat-margin;
+  cursor: pointer;
+}
+
+.seatpicker-seat span {
+  color: $border-color;
+  font-size: 130%;
+  padding-left: $seat-size / 8;
+  padding-top: $seat-size / 8;
+  display: block;
+  font-weight: bold;
+}
+
+.seatpicker-seattop, .seatpicker-seatbottom {
+  @extend .seatpicker-seat;
+  float: left;
+}
+
+.seatpicker-seatleft, .seatpicker-seatright {
+  @extend .seatpicker-seat;
+}
+
+.seatpicker-seattop:first-child, .seatpicker-seatbottom:first-child {
+  margin-right: $seat-gap;
+}
+
+.seatpicker-seatleft:first-child, .seatpicker-seatright:first-child {
+  margin-bottom: $seat-gap;
+}
+
+.seatpicker-seatsleft, .seatpicker-seatsright {
+  float: left;
+}
+
+.seatpicker-table {
+  @extend .seatpicker-object;
+}
+
+.seatpicker-tabletop, .seatpicker-tablebottom {
+  @extend .seatpicker-table;
+  width: $table-length;
+  height: $table-width;
+  clear: both;
+}
+
+.seatpicker-tableleft, .seatpicker-tableright {
+  @extend .seatpicker-table;
+  height: $table-length;
+  width: $table-width;
+  float: left;
+}
+
+.seatpicker-table-seat-group {
+  float: left;
+}
+
+.seatpicker-table-row {
+  clear: both;
+}
+
+.seatpicker-table-row {
+}
+
+.seatpicker-room {
+  @extend .clearfix;
+  padding-bottom: 30px;
+  padding-top: 20px
+}
+
+.seatpicker-picker .reserved {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* theme specific styles */
+.seatpicker-picker {
+  padding-left: 30px;
+  padding-right: 30px;
+}

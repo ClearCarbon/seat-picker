@@ -1,0 +1,6 @@
+#seatpicker-room.seatpicker-room
+  .seatpicker-picker
+    - alignment = :top
+    - @rows.each do |row|
+      = render partial: "table_row", locals: {row: row, align: alignment, seats: seat_row(@seats, row)}
+      - alignment = (alignment == :top ? :bottom : :top)

@@ -1,7 +1,5 @@
 .flash-messages
   - flash.each do |name, msg|
-    %div{:class => "alert alert-dismissable alert-#{name == 'notice' ? 'success' : 'danger'}", :role => "alert"}
-      %button.close{"data-dismiss" => "alert", :type => "button"}
-        %span{"aria-hidden" => "true"} ×
-        %span.sr-only Close
+    .alert.fade.in{ class: "alert-#{ name == 'notice' ? 'success' : 'danger' }" }
+      %a.close{ data: { dismiss: :alert } } &times;
       = msg
