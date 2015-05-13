@@ -36,3 +36,16 @@ describe 'As an admin' do
   end
 
 end
+
+describe "As a user" do
+  let(:user) { FactoryGirl.create :user }
+  let!(:seat) { FactoryGirl.create :seat }
+
+  before { login_as user }
+
+  specify 'I can not see a list of seats' do
+    visit admin_seats_path
+    expect(page.status_code).to eq(404)
+  end
+
+end

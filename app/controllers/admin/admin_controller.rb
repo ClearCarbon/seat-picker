@@ -5,7 +5,8 @@ class Admin::AdminController < ApplicationController
   private
 
     def verify_admin!
-      raise AbstractController::ActionNotFound unless current_user.admin?
+      render :file => 'public/404.html',
+        :status => :not_found, :layout => false unless current_user.admin?
     end
 
 end

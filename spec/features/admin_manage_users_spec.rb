@@ -40,3 +40,17 @@ describe 'As an admin' do
   end
 
 end
+
+describe "As a user" do
+  let(:user) { FactoryGirl.create :user }
+  let!(:user) { FactoryGirl.create :user, email: 'bob@example.com',
+    username: 'Bob'}
+
+  before { login_as user }
+
+  specify 'I can not see a list of users' do
+    visit admin_users_path
+    expect(page.status_code).to eq(404)
+  end
+
+end
