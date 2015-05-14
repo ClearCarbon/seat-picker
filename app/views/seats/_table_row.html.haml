@@ -2,7 +2,7 @@
   - seats.each_slice(2) do |table_seats|
     .seatpicker-table-seat-group
       - if align == :top  or align == :left
-        = render partial: "seats", locals: {align: align, seats: table_seats}
-      = render partial: "table", locals: {align: align}
+        = render partial: "seats/seats", locals: {align: align, seats: table_seats}
+      = render partial: "seats/table", locals: {align: align}
       - if align == :bottom or align == :right
-        = render partial: "seats", locals: {align: align, seats: table_seats}
+        = render partial: "seats/seats", locals: {align: align, seats: table_seats}

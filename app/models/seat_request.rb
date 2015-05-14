@@ -1,12 +1,14 @@
 class SeatRequest < ActiveRecord::Base
   belongs_to :seat
   belongs_to :user
-
   validates :user, :seat, presence: true
+  validate :not_already_requested
 
-  after_save :send_mail
+  private
 
-  def send_mail
-    # SeatMailer.new_request(user, seat).deliver
-  end
+    def not_already_requested
+      if user.requested?(seat)
+        errors.add(:user_id, "You can't request a seat you've already requested.")
+      end
+    end
 end

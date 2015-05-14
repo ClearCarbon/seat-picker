@@ -7,18 +7,6 @@ SeatPicker::Application.routes.draw do
 
   root 'home#index'
 
-  resources :picker, only: [:index] do
-    member do
-      post :pick
-      post :make_request
-      post :cancel_request
-    end
-    collection do
-      post :give_up
-      post :donate_seat
-    end
-  end
-
   resources :users, only: [:destroy] do
     get :cancel_account, on: :collection
   end
@@ -35,8 +23,10 @@ SeatPicker::Application.routes.draw do
   end
 
   resources :seats do
+    resources :seat_requests, only: [:create, :destroy]
     member do
       post :pick
+      post :give_up
     end
   end
 end

@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     SeatRequest.where(user: self, seat: seat).any?
   end
 
+  def request(seat)
+    SeatRequest.where(user: self, seat: seat).first
+  end
+
   def admin?
     self.admin
   end

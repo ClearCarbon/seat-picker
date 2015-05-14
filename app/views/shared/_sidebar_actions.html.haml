@@ -2,7 +2,7 @@
   #seatpicker-management.well
     %h4 Seat Management
     - if current_user.seat
-      = link_to 'Give up my seat', '#', onclick: "give_up_seat();", class: 'btn btn-default'
+      = link_to 'Give up my seat', give_up_seat_path(current_user.seat), class: 'btn btn-default', method: :post, remote: true, data: { confirm: "Are you sure you wish to give up seat #{current_user.seat.decorate.name}?" }
     - elsif !current_user.seat
       %p You currently have no seat.
     - if current_user.seat_requests.any?
