@@ -2,7 +2,7 @@ SeatPicker::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   authenticated :user do
-    root to: 'picker#index', as: :user_root
+    root to: 'seats#index', as: :user_root
   end
 
   root 'home#index'
