@@ -92,5 +92,15 @@ describe 'As a user', js: true do
       expect(seat1.user_id).to eq(user.id)
     end
     
+    specify 'I can accept their request' do
+      visit seats_path
+      within(:css, '#sidebar-actions') do
+        click_link 'Accept'
+        wait_for_ajax
+      end
+      expect(SeatRequest.all.count).to eq(0)
+      expect(seat1.reload.user_id).to eq(other_user.id)
+    end
+    
   end
 end

@@ -22,7 +22,12 @@ SeatPicker::Application.routes.draw do
     resources :seats
   end
   
-  resources :seat_requests, only: [:destroy]
+  resources :seat_requests, only: [:destroy] do
+    member do
+      post :accept
+      post :deny
+    end
+  end
 
   resources :seats do
     resources :seat_requests, only: [:create]

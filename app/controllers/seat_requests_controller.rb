@@ -19,9 +19,15 @@ class SeatRequestsController < ApplicationController
   end
   
   def deny
-    authorize @seat_request, :destroy?
+    authorize @seat_request, :deny?
 
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
+  end
+  
+  def accept
+    authorize @seat_request, :accept?
+    
+    SeatRequestAcceptor.new(StandardAjaxResponder.new(self)).accept(@seat_request)
   end
 
   private
