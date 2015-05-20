@@ -34,7 +34,7 @@ describe 'As a user', js: true do
     end
   end
 
-  context "with another user in the system that has picked a seat", js: true do
+  context "with another user in the system that has picked a seat" do
     let!(:other_user) { FactoryGirl.create :user, password: 'password', seat: seat1 }
 
     specify "I can not pick a seat another user has picked" do
@@ -56,12 +56,41 @@ describe 'As a user', js: true do
     context 'and I have requested the seat' do
       let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: user) }
       
-      specify "I can cancel my seat request" do
+      specify "I can cancel my seat request within the sidebar" do
         visit seats_path
-        click_link 'Cancel request'
-        wait_for_ajax
-        expect(page).to_not have_content 'Your have requested the following seat'
+        within(:css, '#sidebar-actions') do
+          click_link 'Cancel request'
+          wait_for_ajax
+          expect(page).to_not have_content 'Your have requested the following seat'
+        end
+      end
+      
+      specify "I can cancel my seat request by clicking on a seat" do
+        visit seats_path
+        find(:css, "#seat_#{seat1.id}").click
+        within(:css, '.popover-content') do
+          click_link 'Cancel request'
+          wait_for_ajax
+          expect(SeatRequest.all.count).to eq 0
+        end
       end
     end
+  end
+  
+  context 'with another user in the system has has requested my seat' do
+    let!(:seat1) { FactoryGirl.create :seat, user: user }
+    let!(:other_user) { FactoryGirl.create :user, password: 'password' }
+    let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: other_user) }
+    
+    specify 'I can deny their request' do
+      visit seats_path
+      within(:css, '#sidebar-actions') do
+        click_link 'Deny'
+        wait_for_ajax
+      end
+      expect(SeatRequest.all.count).to eq(0)
+      expect(seat1.user_id).to eq(user.id)
+    end
+    
   end
 end

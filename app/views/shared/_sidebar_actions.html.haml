@@ -17,12 +17,14 @@
             .col-xs-2
               = seat_request.decorate.seat_name
             .col-xs-10
-              = link_to 'Cancel request', seat_seat_request_path(seat_request.seat, seat_request), method: :delete, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
+              = link_to 'Cancel request', seat_request_path(seat_request), method: :delete, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
               
     - if current_user.seat && current_user.seat.seat_requests.any?
-      #seat-requests
+      #seat-requests.buffer-top
         - current_user.seat.seat_requests.each do |seat_request|
-          .buffer-top
-            %p
-              = "#{seat_request.user.username} has requested your seat, you can give them your seat by clicking below."
-            = link_to "Give them your seat", '#', onclick: "donate_seat(#{seat_request.id});", title: "Give your seat to #{seat_request.user.username}", class: 'btn btn-primary'
+          .row.buffer-top-sm
+            .col-xs-2
+              = seat_request.decorate.seat_name
+            .col-xs-5
+              = link_to 'Deny', seat_request_path(seat_request), method: :delete, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to deny the seat request from '#{seat_request.decorate.user_username}'?"}
+              

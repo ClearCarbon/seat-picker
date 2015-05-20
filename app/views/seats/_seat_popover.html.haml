@@ -1,7 +1,7 @@
 - if seat.user && seat.user == current_user
   This is your current seat.
 - elsif seat.user && current_user.requested?(seat.object)
-  = link_to 'Undo this seat request', seat_seat_request_path(seat, current_user.request(seat)), class: 'btn btn-primary', method: :delete, remote: true
+  = link_to 'Cancel request', seat_request_path(current_user.request(seat)), class: 'btn btn-primary', method: :delete, remote: true
 - elsif seat.user
   = link_to 'Request this seat', seat_seat_requests_path(seat), class: 'btn btn-primary', method: :post, remote: true
 - else

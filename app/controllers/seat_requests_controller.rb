@@ -1,6 +1,6 @@
 class SeatRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_seat
+  before_action :find_seat, only: [:create]
   before_action :find_seat_request, except: [:create]
   before_action :set_seats
   respond_to :js
@@ -13,6 +13,12 @@ class SeatRequestsController < ApplicationController
   end
 
   def destroy
+    authorize @seat_request, :destroy?
+
+    StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
+  end
+  
+  def deny
     authorize @seat_request, :destroy?
 
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)

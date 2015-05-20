@@ -7,4 +7,8 @@ class SeatRequestDecorator < Draper::Decorator
     seat.name
   end
   
+  def user_username
+    user.username
+  end
+  
 end
