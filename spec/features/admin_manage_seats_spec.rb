@@ -15,8 +15,9 @@ describe 'As an admin' do
   specify 'I can edit a seat' do
     visit edit_admin_seat_path(seat)
     fill_in 'Row', with: 'B'
+    fill_in 'Number', with: '1'
     click_button 'Update Seat'
-    expect(page).to have_content 'B1'
+    expect(page).to have_content "B1"
   end
 
   specify 'I can delete a seat' do

@@ -58,9 +58,58 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 
-  # Capybara.register_driver :poltergeist do |app|
-  #   Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, debug: false)
-  # end
+  config.mock_with :rspec
+
+  config.use_transactional_fixtures = false
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each, js: true) do
+    expect(current_path).to eq current_path
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  Capybara.asset_host = 'http://localhost:3000'
+
+
+  class WarningSuppressor
+    class << self
+      def write(message)
+        if message =~ /no title for patternMismatch provided. Always add a title attribute/ ||
+           message =~ /QFont::setPixelSize: Pixel size <= 0/ ||
+           message =~/CoreText performance note:/ ||
+           message =~ /Method userSpaceScaleFactor in class NSView is deprecated on/ ||
+           message =~ /loading all features without specifing might be bad for performance/ ||
+           message =~ /detected use of select2 try to add support/
+           0
+        else
+           puts(message)
+           1
+        end
+      end
+    end
+  end
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, debug: false, window_size: [1280, 1024])
+  end
 
   Capybara.javascript_driver = :poltergeist
   Capybara.server do |app, port|

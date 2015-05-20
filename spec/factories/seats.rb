@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :seat do
     row "A"
-    number "1"
+    sequence("number")
   end
 end

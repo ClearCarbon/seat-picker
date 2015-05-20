@@ -2,13 +2,23 @@
   #seatpicker-management.well
     %h4 Seat Management
     - if current_user.seat
+      %p.seat-message
+        You are currently sat in seat
+        = current_user.seat.decorate.name
       = link_to 'Give up my seat', give_up_seat_path(current_user.seat), class: 'btn btn-default', method: :post, remote: true, data: { confirm: "Are you sure you wish to give up seat #{current_user.seat.decorate.name}?" }
     - elsif !current_user.seat
       %p You currently have no seat.
     - if current_user.seat_requests.any?
-      #my-seat-requests
+      #my-seat-requests.buffer-top
         Your have requested the following #{'seat'.pluralize(current_user.seat_requests.count)}:
-        \#{current_user.seat_requests.collect{|seat_request| seat_request.seat.decorate.name }.to_sentence}
+        
+        - current_user.seat_requests.each do |seat_request|
+          .row.buffer-top-sm
+            .col-xs-2
+              = seat_request.decorate.seat_name
+            .col-xs-10
+              = link_to 'Cancel request', seat_seat_request_path(seat_request.seat, seat_request), method: :delete, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
+              
     - if current_user.seat && current_user.seat.seat_requests.any?
       #seat-requests
         - current_user.seat.seat_requests.each do |seat_request|

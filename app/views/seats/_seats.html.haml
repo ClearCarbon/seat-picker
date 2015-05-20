@@ -5,5 +5,5 @@
       .seatpicker-seat.reserved{class: "seatpicker-seat#{align.to_s}#{selected_class(seat)}" }
         %span= seat.name
     - else
-      %div.seatpicker-seat{class: "seatpicker-seat#{align.to_s}#{selected_class(seat)}", title: seat.popover_title, data: {toggle: 'popover', html: 'true', content: "#{render 'seats/seat_popover', seat: seat}" } }
+      %div.seatpicker-seat[seat.source]{class: "seatpicker-seat#{align.to_s}#{selected_class(seat)}", title: seat.popover_title, data: {toggle: 'popover', html: 'true', content: "#{render 'seats/seat_popover', seat: seat}" } }
         %span= seat.name
