@@ -14,6 +14,17 @@ describe 'As a user', js: true do
     wait_for_ajax
     expect(page).to have_content "You are currently sat in seat #{seat1.decorate.name}"
   end
+  
+  context 'when a seat is reserved' do
+    let!(:seat1) { FactoryGirl.create :seat, reserved: true }
+    
+    specify 'I can not pick the reserved seat' do
+      visit seats_path
+      find(:css, "#seat_#{seat1.id}").click
+      expect(page).to_not have_link 'Pick this seat'
+    end
+    
+  end
 
   context 'that has already picked a seat' do
     let!(:seat1) { FactoryGirl.create :seat, user: user }
