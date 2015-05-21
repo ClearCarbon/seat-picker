@@ -1,3 +1,4 @@
 $('#seat-picker-layout').html('#{j render template: 'seats/index' }')
 $('#sidebar-actions').html('#{j render template: 'shared/_sidebar_actions' }')
 init_seat_picker();
+$.flashAlert('You have cancelled the seat request.', 'alert-success')
