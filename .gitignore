@@ -19,3 +19,4 @@
 /.rspec
 .DS_Store
 coverage
+config/database.yml

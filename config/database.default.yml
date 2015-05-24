@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: seat-picker_dev
+  host: localhost
+  min_messages: warning
+  username:
+
+test:
+  adapter: postgresql
+  database: seat-picker_test
+  host: localhost
+  min_messages: warning
+  username:
