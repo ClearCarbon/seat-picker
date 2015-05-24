@@ -18,3 +18,4 @@
 .rake_tasks~
 /.rspec
 .DS_Store
+coverage

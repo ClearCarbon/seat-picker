@@ -49,3 +49,5 @@ group :development, :test do
   gem 'byebug'
   gem 'launchy'
 end
+
+gem 'simplecov', :require => false, :group => :test

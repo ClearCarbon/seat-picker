@@ -38,6 +38,21 @@ describe 'As an admin' do
     expect(page).to have_content 'New User'
     expect(page).to have_content 'test@example.com'
   end
+  
+  specify 'I can promote a user' do
+    visit edit_admin_user_path(user)
+    click_link 'Promote'
+    expect(page).to have_link 'Demote'
+    expect(user.reload.admin?).to eq(true)
+  end
+  
+  specify 'I can demote a user' do
+    user.update_attributes(admin: true)
+    visit edit_admin_user_path(user)
+    click_link 'Demote'
+    expect(page).to have_link 'Promote'
+    expect(user.reload.admin?).to eq(false)
+  end
 
 end
 
