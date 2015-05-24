@@ -41,12 +41,16 @@ class Admin::UsersController < Admin::AdminController
   def promote_to_admin
     authorize @user, :promote?
     @user.promote_to_admin!
+    @user = @user.decorate
+    flash[:notice] = "'#{@user.username}' has been promoted to admin."
     redirect_to edit_admin_user_path(@user)
   end
 
   def demote_from_admin
     authorize @user, :promote?
     @user.demote_from_admin!
+    @user = @user.decorate
+    flash[:notice] = "'#{@user.username}' has been demoted to a regular user."
     redirect_to edit_admin_user_path(@user)
   end
 
