@@ -11,14 +11,14 @@ class SeatsController < ApplicationController
   def pick
     authorize @seat, :pick?
     params = { user_id: current_user.id }
-
+    @seat = @seat.decorate
     StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat, params)
   end
 
   def give_up
     authorize @seat, :give_up?
     params = { user_id: nil }
-
+    @seat = @seat.decorate
     StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat, params)
   end
 

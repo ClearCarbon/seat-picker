@@ -8,24 +8,27 @@ class SeatRequestsController < ApplicationController
   def create
     @seat_request = SeatRequest.new(seat: @seat, user: current_user)
     authorize @seat_request, :create?
-
+    @seat_request = @seat_request.decorate
     StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat_request, {})
   end
 
   def destroy
     authorize @seat_request, :destroy?
+    @seat_request = @seat_request.decorate
 
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
   end
   
   def deny
     authorize @seat_request, :deny?
+    @seat_request = @seat_request.decorate
 
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
   end
   
   def accept
     authorize @seat_request, :accept?
+    @seat_request = @seat_request.decorate
     
     SeatRequestAcceptor.new(StandardAjaxResponder.new(self)).accept(@seat_request)
   end

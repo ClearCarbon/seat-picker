@@ -1,4 +1,4 @@
 $('#seat-picker-layout').html('#{j render template: 'seats/index' }')
 $('#sidebar-actions').html('#{j render template: 'shared/_sidebar_actions' }')
 init_seat_picker();
-$.flashAlert('You have accepted the seat request, please pick another seat.', 'alert-success')
+$.flashAlert("You have accepted the seat request from '#{j @seat_request.user_username }', please pick another seat.", 'alert-success')
