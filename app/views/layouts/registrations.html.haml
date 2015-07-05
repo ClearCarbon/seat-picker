@@ -20,10 +20,11 @@
   %body
     = render('shared/nav')
     .container
+      = render 'shared/flash_messages'
+      = devise_error_messages!
       .row
         .col-md-4
         .col-md-4
-          = render 'shared/flash_messages'
           = yield
         .col-md-4
       %hr.divider/
