@@ -48,6 +48,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'byebug'
   gem 'launchy'
+  gem 'rake'
 end
 
 gem 'simplecov', :require => false, :group => :test

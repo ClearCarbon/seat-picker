@@ -300,6 +300,7 @@ DEPENDENCIES
   pundit
   rails (= 4.2.1)
   rails_12factor
+  rake
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
