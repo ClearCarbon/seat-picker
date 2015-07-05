@@ -1,6 +1,6 @@
 # Seat Picker
 
-A seat picker for LAN Parties.
+A minimalist seat picker for running small events.
 
 
 ## Roadmap
