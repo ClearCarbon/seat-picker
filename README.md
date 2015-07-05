@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ClearCarbon/seat-picker.svg?branch=master)](https://travis-ci.org/ClearCarbon/seat-picker)
+
 # Seat Picker
 
 A minimalist seat picker for running small events.
