@@ -26,10 +26,7 @@
         %p Your seat has been requested by these users.
         - current_user.seat.seat_requests.each do |seat_request|
           .row.buffer-top-sm
-            .col-xs-6
+            .col-xs-8
               = seat_request.decorate.user_username
-            .col-xs-3
-              = link_to 'Accept', accept_seat_request_path(seat_request), method: :post, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to accept the seat request from '#{seat_request.decorate.user_username}'?"}
-            .col-xs-3
-              = link_to 'Deny', deny_seat_request_path(seat_request), method: :post, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to deny the seat request from '#{seat_request.decorate.user_username}'?"}
-              
+            .col-xs-4
+              = link_to 'View', seat_request_path(seat_request), class: 'btn btn-default btn-xs pull-rightn ajax-modal'

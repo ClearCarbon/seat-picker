@@ -9,5 +9,5 @@
       .modal-body
         = f.input :reason, placeholder: 'Try to politely explain why you need the seat.'
       .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Cancel
         = f.button :submit, 'Request seat', class: 'btn btn-primary'

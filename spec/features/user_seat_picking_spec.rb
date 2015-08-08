@@ -95,11 +95,26 @@ describe 'As a user', js: true do
   context 'with another user in the system has has requested my seat' do
     let!(:seat1) { FactoryGirl.create :seat, user: user }
     let!(:other_user) { FactoryGirl.create :user, password: 'password' }
-    let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: other_user) }
+    let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: other_user, reason: 'I want this seat') }
+    
+    specify 'I can see the reason for the request' do
+      visit seats_path
+      within(:css, '#sidebar-actions') do
+        click_link 'View'
+        wait_for_ajax
+      end
+      within(:css, '.modal') do
+        expect(page).to have_content 'I want this seat'
+      end
+    end
     
     specify 'I can deny their request' do
       visit seats_path
       within(:css, '#sidebar-actions') do
+        click_link 'View'
+        wait_for_ajax
+      end
+      within(:css, '.modal') do
         click_link 'Deny'
         wait_for_ajax
       end
@@ -110,6 +125,10 @@ describe 'As a user', js: true do
     specify 'I can accept their request' do
       visit seats_path
       within(:css, '#sidebar-actions') do
+        click_link 'View'
+        wait_for_ajax
+      end
+      within(:css, '.modal') do
         click_link 'Accept'
         wait_for_ajax
       end

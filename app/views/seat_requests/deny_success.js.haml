@@ -2,3 +2,4 @@ $('#seat-picker-layout').html('#{j render template: 'seats/index' }')
 $('#sidebar-actions').html('#{j render template: 'shared/_sidebar_actions' }')
 init_seat_picker();
 $.flashAlert("You have denied the seat request from '#{j @seat_request.user_username }'.", 'alert-success')
+$('.modal').modal('hide')

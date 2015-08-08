@@ -26,6 +26,11 @@ class SeatRequestsController < ApplicationController
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
   end
   
+  def show
+    @seat_request = @seat_request.decorate
+    render layout: false
+  end
+  
   def deny
     authorize @seat_request, :deny?
     @seat_request = @seat_request.decorate

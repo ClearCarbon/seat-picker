@@ -18,7 +18,7 @@ var init_seat_picker = function() {
     });
     
     $('.popover .ajax-modal').click(function() {
-      $(this).parents('.popover').popover('hide');
+      $('.popover').popover('hide');
     });
 
     return false;
@@ -26,3 +26,9 @@ var init_seat_picker = function() {
 };
 
 $(document).ready(init_seat_picker);
+$(document).ready(function() {
+  $('.ajax-modal').on('click', function (e) {
+    $('.popover').popover('hide');
+  })
+});
+

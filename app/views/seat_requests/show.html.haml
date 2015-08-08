@@ -1,0 +1,15 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+      %h4.modal-title
+        = "Seat request sent by #{@seat_request.user_username}"
+    .modal-body
+      %dl
+        %dt Reason
+        %dd= @seat_request.reason
+    .modal-footer
+      %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Cancel
+      = link_to 'Accept', accept_seat_request_path(@seat_request), method: :post, remote: true, class: 'btn btn-primary pull-right'
+      = link_to 'Deny', deny_seat_request_path(@seat_request), method: :post, remote: true, class: 'btn btn-default pull-right'
