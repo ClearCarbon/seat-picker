@@ -1,15 +1,22 @@
 class SeatRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_seat, only: [:create]
+  before_action :find_seat, only: [:new, :create]
   before_action :find_seat_request, except: [:create]
   before_action :set_seats
   respond_to :js
+  
+  def new
+    authorize SeatRequest, :create?
+    @seat_request = SeatRequest.new(seat: @seat, user: current_user)
+    @seat_request = @seat_request.decorate
+    render layout: false
+  end
 
   def create
     @seat_request = SeatRequest.new(seat: @seat, user: current_user)
     authorize @seat_request, :create?
     @seat_request = @seat_request.decorate
-    StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat_request, {})
+    StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat_request, seat_request_params)
   end
 
   def destroy
@@ -34,18 +41,22 @@ class SeatRequestsController < ApplicationController
   end
 
   private
+  
+    def seat_request_params
+      params.require(:seat_request).permit(:reason)
+    end
 
     def find_seat
-      @seat = Seat.find(params[:seat_id])
+      @seat = Seat.find(params[:seat_id]) if params[:seat_id]
     end
 
     def find_seat_request
-      @seat_request = SeatRequest.find(params[:id])
+      @seat_request = SeatRequest.find(params[:id]) if params[:id]
     end
 
     def set_seats
-      @rows = Seat.order(row: :asc).pluck(:row).uniq
-      @seats = Seat.order(row: :asc, number: :desc).decorate
+      @rows = Seat.rows
+      @seats = Seat.ordered_seats
     end
 
 end

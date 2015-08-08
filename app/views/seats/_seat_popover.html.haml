@@ -3,7 +3,7 @@
 - elsif seat.user && current_user.requested?(seat.object)
   = link_to 'Cancel request', seat_request_path(current_user.request(seat)), class: 'btn btn-primary', method: :delete, remote: true
 - elsif seat.user
-  = link_to 'Request this seat', seat_seat_requests_path(seat), class: 'btn btn-primary', method: :post, remote: true
+  = link_to 'Request this seat', new_seat_seat_request_path(seat), class: 'btn btn-primary ajax-modal'
 - else
   = link_to pick_seat_path(seat), class: 'btn btn-primary', method: :post, remote: true do
     Pick this seat

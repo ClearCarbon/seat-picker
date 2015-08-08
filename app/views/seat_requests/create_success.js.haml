@@ -1,4 +1,5 @@
 $('#seat-picker-layout').html('#{j render template: 'seats/index' }')
 $('#sidebar-actions').html('#{j render template: 'shared/_sidebar_actions' }')
 init_seat_picker();
+$('.modal').modal('hide')
 $.flashAlert('You have requested seat #{j @seat_request.seat_name}.', 'alert-success')

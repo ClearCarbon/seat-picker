@@ -1,0 +1,13 @@
+.modal-dialog
+  = simple_form_for @seat_request, url: seat_seat_requests_path(@seat_request.seat), method: :post, remote: true do |f|
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title
+          = "Request seat from #{@seat_request.seat_user_username}"
+      .modal-body
+        = f.input :reason, placeholder: 'Try to politely explain why you need the seat.'
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        = f.button :submit, 'Request seat', class: 'btn btn-primary'

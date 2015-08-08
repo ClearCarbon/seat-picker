@@ -61,7 +61,11 @@ describe 'As a user', js: true do
       find(:css, "#seat_#{seat1.id}").click
       click_link 'Request this seat'
       wait_for_ajax
+      fill_in 'Reason', with: 'request reason'
+      click_button 'Request seat'
+      wait_for_ajax
       expect(SeatRequest.count).to eq(1)
+      expect(SeatRequest.first.reason).to eq('request reason')
     end
 
     context 'and I have requested the seat' do

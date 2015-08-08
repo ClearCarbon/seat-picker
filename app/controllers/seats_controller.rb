@@ -29,8 +29,8 @@ class SeatsController < ApplicationController
     end
 
     def set_seats
-      @rows = Seat.order(row: :asc).pluck(:row).uniq
-      @seats = Seat.order(row: :asc, number: :asc).decorate
+      @rows = Seat.rows
+      @seats = Seat.ordered_seats
     end
 
 end

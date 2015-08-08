@@ -30,7 +30,7 @@ SeatPicker::Application.routes.draw do
   end
 
   resources :seats do
-    resources :seat_requests, only: [:create]
+    resources :seat_requests, only: [:new, :create]
     member do
       post :pick
       post :give_up

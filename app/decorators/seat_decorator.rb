@@ -8,4 +8,9 @@ class SeatDecorator < Draper::Decorator
   def popover_title
     "#{h.avatar_for(source.user, size: :micro)} #{seat.user.try(:username) || 'Empty seat'}"
   end
+  
+  def user_username
+    user.username
+  end
+  
 end
