@@ -11,6 +11,12 @@ class SeatMailer < ActionMailer::Base
     mail to: seat_request.seat.user.email, subject: "#{@seat_request.user_username} has requested your seat"
   end
   
+  def request_cancelled(seat_request_user, seat_user)
+    @seat_request_user = seat_request_user.decorate
+    @seat_user = seat_user.decorate
+    mail to: seat_user.email, subject: "#{seat_request_user.username} cancelled their request"
+  end
+  
   def request_accepted(seat_request_user, seat_user)
     @seat_request_user = seat_request_user.decorate
     @seat_user = seat_user.decorate

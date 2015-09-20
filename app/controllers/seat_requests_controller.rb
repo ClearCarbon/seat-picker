@@ -24,7 +24,10 @@ class SeatRequestsController < ApplicationController
   def destroy
     authorize @seat_request, :destroy?
     @seat_request = @seat_request.decorate
-    StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
+    mail_responder = StandardMailResponder.new(StandardAjaxResponder.new(self), 
+      mail: SeatMailer.request_cancelled(current_user, @seat_request.seat.user))
+    
+    StandardDestroyer.new(mail_responder).destroy(@seat_request)
   end
   
   def show
