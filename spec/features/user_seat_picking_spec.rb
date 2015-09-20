@@ -66,6 +66,9 @@ describe 'As a user', js: true do
       wait_for_ajax
       expect(SeatRequest.count).to eq(1)
       expect(SeatRequest.first.reason).to eq('request reason')
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.body).to have_content "You will need to pick a new seat for yourself"
+      expect(mail.to).to have_content other_user.email
     end
 
     context 'and I have requested the seat' do
@@ -77,6 +80,9 @@ describe 'As a user', js: true do
           click_link 'Cancel request'
           wait_for_ajax
           expect(page).to_not have_content 'Your have requested the following seat'
+          mail = ActionMailer::Base.deliveries.last
+          expect(mail.body).to have_content "has cancelled their request for your seat."
+          expect(mail.to).to have_content other_user.email
         end
       end
       
@@ -87,6 +93,9 @@ describe 'As a user', js: true do
           click_link 'Cancel request'
           wait_for_ajax
           expect(SeatRequest.all.count).to eq 0
+          mail = ActionMailer::Base.deliveries.last
+          expect(mail.body).to have_content "has cancelled their request for your seat."
+          expect(mail.to).to have_content other_user.email
         end
       end
     end
@@ -120,6 +129,9 @@ describe 'As a user', js: true do
       end
       expect(SeatRequest.all.count).to eq(0)
       expect(seat1.user_id).to eq(user.id)
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.body).to have_content "has denied your seat request."
+      expect(mail.to).to have_content other_user.email
     end
     
     specify 'I can accept their request' do
@@ -134,6 +146,9 @@ describe 'As a user', js: true do
       end
       expect(SeatRequest.all.count).to eq(0)
       expect(seat1.reload.user_id).to eq(other_user.id)
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.body).to have_content "accepted your seat request."
+      expect(mail.to).to have_content other_user.email
     end
     
   end
