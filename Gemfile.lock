@@ -133,6 +133,8 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     libv8 (3.16.14.11)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
@@ -292,6 +294,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   launchy
+  letter_opener
   machinist (~> 2.0)
   nokogiri
   pg

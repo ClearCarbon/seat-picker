@@ -16,13 +16,14 @@ class SeatRequestsController < ApplicationController
     @seat_request = SeatRequest.new(seat: @seat, user: current_user)
     authorize @seat_request, :create?
     @seat_request = @seat_request.decorate
-    StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat_request, seat_request_params)
+    mail_responder = StandardMailResponder.new(StandardAjaxResponder.new(self), 
+      mail: SeatMailer.new_request(@seat_request.source))
+    StandardUpdater.new(mail_responder).update(@seat_request, seat_request_params)
   end
 
   def destroy
     authorize @seat_request, :destroy?
     @seat_request = @seat_request.decorate
-
     StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
   end
   

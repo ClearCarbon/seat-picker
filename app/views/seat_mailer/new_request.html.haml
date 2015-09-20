@@ -1,0 +1,19 @@
+%div{style: 'font-family: Verdana, sans-serif'}
+  %p
+    = @seat_request.user_username
+    has requested your seat.
+
+  - if @seat_request.reason.present?
+    %p
+      They gave the following reason:
+      %br
+      = @seat_request.reason
+
+  %p
+    = "If you accept the request #{@seat_request.user_username} will be placed in your seat."
+    You will need to pick a new seat yourself.
+
+    %div
+      = link_to 'Accept seat request', accept_seat_request_path(@seat_request)
+    %div
+      = link_to 'View seating arrangement', root_path(@seat_request)

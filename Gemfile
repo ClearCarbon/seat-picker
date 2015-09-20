@@ -45,6 +45,7 @@ group :development, :test do
   gem 'byebug'
   gem 'launchy'
   gem 'rake'
+  gem 'letter_opener'
 end
 
 gem 'simplecov', :require => false, :group => :test
