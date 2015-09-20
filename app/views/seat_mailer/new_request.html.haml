@@ -1,5 +1,8 @@
 %div{style: 'font-family: Verdana, sans-serif'}
   %p
+    Hi #{@seat_request.seat_user_username}
+  
+  %p
     = @seat_request.user_username
     has requested your seat.
 
@@ -10,10 +13,9 @@
       = @seat_request.reason
 
   %p
-    = "If you accept the request #{@seat_request.user_username} will be placed in your seat."
-    You will need to pick a new seat yourself.
+    If you accept the request #{@seat_request.user_username} will be placed in your seat.
+    You will need to pick a new seat for yourself. Please login below to accept or deny the 
+    seat request.
 
-    %div
-      = link_to 'Accept seat request', accept_seat_request_url(@seat_request)
     %div
       = link_to 'View seating arrangement', root_url(@seat_request)

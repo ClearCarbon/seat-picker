@@ -1,7 +1,6 @@
 SeatPicker::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Code is not reloaded between requests.
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -74,8 +73,11 @@ SeatPicker::Application.configure do
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
+  
+  config.action_mailer.default_url_options = {
+    :host => 'seatpicker.example.com'
+  }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.action_mailer.default_url_options = { host: 'seatpicker.example.com' }
 end

@@ -35,15 +35,18 @@ class SeatRequestsController < ApplicationController
   def deny
     authorize @seat_request, :deny?
     @seat_request = @seat_request.decorate
-
-    StandardDestroyer.new(StandardAjaxResponder.new(self)).destroy(@seat_request)
+    mail_responder = StandardMailResponder.new(StandardAjaxResponder.new(self), 
+      mail: SeatMailer.request_denied(@seat_request.source.user, current_user))
+    
+    StandardDestroyer.new(mail_responder).destroy(@seat_request)
   end
   
   def accept
     authorize @seat_request, :accept?
     @seat_request = @seat_request.decorate
-    
-    SeatRequestAcceptor.new(StandardAjaxResponder.new(self)).accept(@seat_request)
+    mail_responder = StandardMailResponder.new(StandardAjaxResponder.new(self), 
+      mail: SeatMailer.request_accepted(@seat_request.source.user, current_user))
+    SeatRequestAcceptor.new(mail_responder).accept(@seat_request)
   end
 
   private
