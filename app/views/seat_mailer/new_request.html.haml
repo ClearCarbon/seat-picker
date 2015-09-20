@@ -14,6 +14,6 @@
     You will need to pick a new seat yourself.
 
     %div
-      = link_to 'Accept seat request', accept_seat_request_path(@seat_request)
+      = link_to 'Accept seat request', accept_seat_request_url(@seat_request)
     %div
-      = link_to 'View seating arrangement', root_path(@seat_request)
+      = link_to 'View seating arrangement', root_url(@seat_request)
