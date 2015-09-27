@@ -1,1 +1,1 @@
-git archive --format zip  --output ./seatpickerrelease.zip master
+git archive --format zip  --output ./seat-picker.zip master
