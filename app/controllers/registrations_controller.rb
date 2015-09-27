@@ -12,7 +12,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def registration_allowed!
     restricted = Rails.application.config.restricted_registration
-
     if restricted == true
       return ensure_registration_key!
     end
