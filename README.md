@@ -12,7 +12,7 @@ A minimalist seat picker for running small events.
   configuration. If you wish to use restricted registration where a key is required in
   the url to register for the seat picker you can turn it on and set the key in this file.
 4. Set your mailer options at the bottom of config/environments/production.rb. We recommend using [Postmark](https://devcenter.heroku.com/articles/postmark) with Heroku.
-5. Follow the [Heroku deploy instructions](https://devcenter.heroku.com/categories/deployment)
+5. Follow the [Heroku deploy instructions](https://devcenter.heroku.com/articles/git)
 
 ## Roadmap
 
