@@ -1,5 +1,4 @@
 class SeatPolicy < Struct.new(:user, :seat)
-
   class Scope < Struct.new(:user, :seat)
     def resolve
       seat.all

@@ -1,5 +1,5 @@
 SeatPicker::Application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   authenticated :user do
     root to: 'seats#index', as: :user_root
@@ -21,7 +21,7 @@ SeatPicker::Application.routes.draw do
 
     resources :seats
   end
-  
+
   resources :seat_requests, only: [:show, :destroy] do
     member do
       post :accept

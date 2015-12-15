@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 SeatPicker::Application.load_tasks
 
 namespace :seats do
-  task :clear => :environment do
+  task clear: :environment do
     Seat.all.each do |seat|
       seat.update_attributes(user_id: nil)
     end
@@ -16,13 +16,12 @@ namespace :seats do
 end
 
 namespace :users do
-  task :ensure_usernames => :environment do
-    users = User.where('username is null');
+  task ensure_usernames: :environment do
+    users = User.where('username is null')
 
     users.each do |user|
-
-      if(user.email.include?('@'))
-        username = user.email.split('@')[0];
+      if user.email.include?('@')
+        username = user.email.split('@')[0]
         username = username.titleize
       else
         username = 'Anonymous'
@@ -33,14 +32,14 @@ namespace :users do
     end
   end
 
-  task :promote_admin => :environment do
-    user_email = ENV['with_email'];
+  task promote_admin: :environment do
+    user_email = ENV['with_email']
     users = User.where(email: user_email)
     users.first.promote_to_admin!
   end
 
-  task :demote_admin => :environment do
-    user_email = ENV['with_email'];
+  task demote_admin: :environment do
+    user_email = ENV['with_email']
     users = User.where(email: user_email)
     users.first.demote_from_admin!
   end

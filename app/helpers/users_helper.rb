@@ -1,8 +1,7 @@
 module UsersHelper
-
   def avatar_for(user, options = {})
-    if !user.nil?
-      default_options = {size: :normal}
+    unless user.nil?
+      default_options = { size: :normal }
       options = default_options.merge(options)
       size = avatar_sizes[options[:size]]
 
@@ -13,13 +12,12 @@ module UsersHelper
   private
 
   def get_gravatar(user, size)
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.username, class: "gravatar", width: "#{size}", height: "#{size}")
-  end
-  
-  def avatar_sizes
-    {micro: 24, normal: 80}
+    image_tag(gravatar_url, alt: user.username, class: 'gravatar', width: "#{size}", height: "#{size}")
   end
 
+  def avatar_sizes
+    { micro: 24, normal: 80 }
+  end
 end

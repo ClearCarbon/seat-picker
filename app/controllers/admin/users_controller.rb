@@ -1,8 +1,8 @@
 class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy,
                                   :promote_to_admin, :demote_from_admin]
-  after_action :verify_authorized, :except => [:index]
-  after_action :verify_policy_scoped, :only => :index
+  after_action :verify_authorized, except: [:index]
+  after_action :verify_policy_scoped, only: :index
   respond_to :html
 
   def index
@@ -55,6 +55,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   private
+
   def set_user
     @user = User.find(params[:id])
   end
@@ -62,5 +63,4 @@ class Admin::UsersController < Admin::AdminController
   def user_params
     params.require(:user).permit(:email, :username, :seat)
   end
-
 end

@@ -6,9 +6,9 @@ class SeatRequest < ActiveRecord::Base
 
   private
 
-    def not_already_requested
-      if user.requested?(seat)
-        errors.add(:user_id, "You can't request a seat you've already requested.")
-      end
+  def not_already_requested
+    if user.requested?(seat)
+      errors.add(:user_id, "You can't request a seat you've already requested.")
     end
+  end
 end

@@ -17,7 +17,7 @@ describe 'As an admin' do
     fill_in 'Row', with: 'B'
     fill_in 'Number', with: '1'
     click_button 'Update Seat'
-    expect(page).to have_content "B1"
+    expect(page).to have_content 'B1'
   end
 
   specify 'I can delete a seat' do
@@ -35,10 +35,9 @@ describe 'As an admin' do
     click_button 'Create Seat'
     expect(page).to have_content 'Z1'
   end
-
 end
 
-describe "As a user" do
+describe 'As a user' do
   let(:user) { FactoryGirl.create :user }
   let!(:seat) { FactoryGirl.create :seat }
 
@@ -48,5 +47,4 @@ describe "As a user" do
     visit admin_seats_path
     expect(page.status_code).to eq(404)
   end
-
 end

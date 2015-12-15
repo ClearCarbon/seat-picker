@@ -2,7 +2,7 @@ class Admin::SeatsController < Admin::AdminController
   before_filter :authenticate_user!
   before_action :set_seat, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
-  after_action :verify_policy_scoped, :only => :index
+  after_action :verify_policy_scoped, only: :index
   respond_to :html
 
   def index
@@ -42,6 +42,7 @@ class Admin::SeatsController < Admin::AdminController
   end
 
   private
+
   def set_seat
     @seat = Seat.find(params[:id])
   end
@@ -49,5 +50,4 @@ class Admin::SeatsController < Admin::AdminController
   def seat_params
     params.require(:seat).permit(:row, :number, :reserved, :user_id)
   end
-
 end

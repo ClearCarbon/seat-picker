@@ -13,8 +13,8 @@ SeatPicker::Application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_files  = true
-  config.static_cache_control = "public, max-age=3600"
+  config.serve_static_files = true
+  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -25,9 +25,9 @@ SeatPicker::Application.configure do
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
-  
-  #make debugging easier and ensure we are never posting
-  #params we shouldn't be
+
+  # make debugging easier and ensure we are never posting
+  # params we shouldn't be
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Tell Action Mailer not to deliver emails to the real world.
@@ -37,9 +37,9 @@ SeatPicker::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  
+
   config.action_mailer.default_url_options = {
-    :host => 'localhost',
-    :port => 3000
+    host: 'localhost',
+    port: 3000
   }
 end

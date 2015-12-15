@@ -2,9 +2,9 @@ require 'simplecov'
 SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/poltergeist'
 
@@ -57,7 +57,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL              # Let's us use the capybara stuf in our specs
   config.include Warden::Test::Helpers      # Let's us do login_as(user)
   config.include Rails.application.routes.url_helpers
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
   config.after(:each) do
     Warden.test_reset!
   end
@@ -74,7 +74,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
 
@@ -92,20 +92,19 @@ RSpec.configure do |config|
 
   Capybara.asset_host = 'http://localhost:3000'
 
-
   class WarningSuppressor
     class << self
       def write(message)
         if message =~ /no title for patternMismatch provided. Always add a title attribute/ ||
            message =~ /QFont::setPixelSize: Pixel size <= 0/ ||
-           message =~/CoreText performance note:/ ||
+           message =~ /CoreText performance note:/ ||
            message =~ /Method userSpaceScaleFactor in class NSView is deprecated on/ ||
            message =~ /loading all features without specifing might be bad for performance/ ||
            message =~ /detected use of select2 try to add support/
-           0
+          0
         else
-           puts(message)
-           1
+          puts(message)
+          1
         end
       end
     end
@@ -118,7 +117,7 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :poltergeist
   Capybara.server do |app, port|
     require 'rack/handler/thin'
-    Rack::Handler::Thin.run(app, :Port => port)
+    Rack::Handler::Thin.run(app, Port: port)
   end
 
   def wait_for_ajax

@@ -1,8 +1,10 @@
 require 'rails_helper.rb'
 
 describe 'As an admin' do
-  let!(:user) { FactoryGirl.create :user, email: 'bob@example.com',
-    username: 'Bob'}
+  let!(:user) do
+    FactoryGirl.create :user, email: 'bob@example.com',
+                              username: 'Bob'
+  end
   let(:admin) { FactoryGirl.create :user, admin: true }
 
   before { login_as admin }
@@ -38,14 +40,14 @@ describe 'As an admin' do
     expect(page).to have_content 'New User'
     expect(page).to have_content 'test@example.com'
   end
-  
+
   specify 'I can promote a user' do
     visit edit_admin_user_path(user)
     click_link 'Promote'
     expect(page).to have_link 'Demote'
     expect(user.reload.admin?).to eq(true)
   end
-  
+
   specify 'I can demote a user' do
     user.update_attributes(admin: true)
     visit edit_admin_user_path(user)
@@ -53,13 +55,14 @@ describe 'As an admin' do
     expect(page).to have_link 'Promote'
     expect(user.reload.admin?).to eq(false)
   end
-
 end
 
-describe "As a user" do
+describe 'As a user' do
   let(:user) { FactoryGirl.create :user }
-  let!(:user) { FactoryGirl.create :user, email: 'bob@example.com',
-    username: 'Bob'}
+  let!(:user) do
+    FactoryGirl.create :user, email: 'bob@example.com',
+                              username: 'Bob'
+  end
 
   before { login_as user }
 
@@ -67,5 +70,4 @@ describe "As a user" do
     visit admin_users_path
     expect(page.status_code).to eq(404)
   end
-
 end

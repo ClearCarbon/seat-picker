@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-ruby "2.2.2"
+ruby '2.2.2'
 gem 'rails', '4.2'
 gem 'thin'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem "pundit"
+gem 'pundit'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -22,19 +22,19 @@ end
 gem 'devise'
 gem 'simple_form'
 gem 'draper'
-gem "haml-rails", "~> 0.9"
+gem 'haml-rails', '~> 0.9'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'epi_js'
 
-gem "faker", "~> 1.2.0"
-gem "machinist", "~> 2.0"
+gem 'faker', '~> 1.2.0'
+gem 'machinist', '~> 2.0'
 gem 'font-awesome-rails'
 gem 'virtus'
 
 gem 'rails_12factor', group: :production
 
-gem "figaro"
+gem 'figaro'
 
 group :development, :test do
   gem 'nokogiri'
@@ -50,4 +50,4 @@ group :development, :test do
   gem 'letter_opener'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test

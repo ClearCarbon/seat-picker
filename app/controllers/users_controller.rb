@@ -16,8 +16,8 @@ class UsersController < ApplicationController
     @cancel_account_form = CancelAccountForm.new(params[:cancel])
     if @user.valid_password? @cancel_account_form.password
       StandardDestroyer.new(StandardResponder.new(self,
-      redirect_path: new_user_session_path,
-      success_text: 'Your account has been deleted.')).destroy(@user)
+                                                  redirect_path: new_user_session_path,
+                                                  success_text: 'Your account has been deleted.')).destroy(@user)
     else
       flash[:error] = 'Password invalid.'
       render 'cancel_account'
@@ -26,8 +26,7 @@ class UsersController < ApplicationController
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
-
+  def set_user
+    @user = User.find(params[:id])
+  end
 end

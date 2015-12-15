@@ -24,13 +24,12 @@ class SeatsController < ApplicationController
 
   private
 
-    def find_seat
-      @seat = Seat.find(params[:id])
-    end
+  def find_seat
+    @seat = Seat.find(params[:id])
+  end
 
-    def set_seats
-      @rows = Seat.rows
-      @seats = Seat.ordered_seats
-    end
-
+  def set_seats
+    @rows = Seat.rows
+    @seats = Seat.ordered_seats
+  end
 end
