@@ -1,8 +1,29 @@
 = simple_form_for [:admin, @seat] do |f|
-  = f.input :row, placeholder: 'Enter seat row letter'
-  = f.input :number, placeholder: 'Enter seat row number'
+  %label
+    Seat
+  .row
+    .col-sm-2
+      = f.input :row, placeholder: 'Row', label_html: { class: 'sr-only' }
+    .col-sm-2
+      = f.input :number, placeholder: 'Number', label_html: { class: 'sr-only' }
   = f.input :user_id, collection: @users.map {|user| [user.summary, user.id] }
   = f.input :reserved
 
   .pull-right
     = f.button :submit, class: 'btn btn-primary'
+
+:javascript
+  $(document).ready(function (){
+    $('#seat_row').on('keyup', function(event) {
+      if ($.inArray(event.keyCode, [13, 27, 32, 8]) == -1) {
+        $('#seat_number').focus();
+      }
+    });
+    
+    $('#seat_number').on('keyup', function(event) {
+      if (event.keyCode == '8') {
+        $('#seat_row').focus();
+      }
+    });
+  });
+  
