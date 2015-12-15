@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :registration_allowed!, except: [:edit, :update]
 
   def ensure_registration_key!
-    key = Rails.application.config.restricted_registration_key
+    key = ENV["restricted_registration_key"]
     given_key = params[:key]
 
     if key != given_key
@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def registration_allowed!
-    restricted = Rails.application.config.restricted_registration
+    restricted = ENV["restricted_registration"]
     if restricted == true
       return ensure_registration_key!
     end

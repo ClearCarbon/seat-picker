@@ -34,6 +34,8 @@ gem 'virtus'
 
 gem 'rails_12factor', group: :production
 
+gem "figaro"
+
 group :development, :test do
   gem 'nokogiri'
   gem 'rspec-rails'

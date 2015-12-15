@@ -21,3 +21,4 @@
 coverage
 config/database.yml
 seat-picker.zip
+config/application.yml

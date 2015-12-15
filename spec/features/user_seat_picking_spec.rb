@@ -101,7 +101,7 @@ describe 'As a user', js: true do
     end
   end
   
-  context 'with another user in the system has has requested my seat' do
+  context 'with another user in the system has requested my seat' do
     let!(:seat1) { FactoryGirl.create :seat, user: user }
     let!(:other_user) { FactoryGirl.create :user, password: 'password' }
     let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: other_user, reason: 'I want this seat') }
