@@ -31,7 +31,7 @@ describe 'As a user' do
     fill_in :cancel_password, with: 'password'
     click_button 'Cancel my account'
     expect(User.all.count).to eq 0
-    expect(page).to have_content "Your account has been deleted."
+    expect(page).to have_content 'Your account has been deleted.'
   end
 
   specify 'I can not delete my account if my password is wrong' do
@@ -39,13 +39,13 @@ describe 'As a user' do
     fill_in :cancel_password, with: 'badger'
     click_button 'Cancel my account'
     expect(User.all.count).to eq 1
-    expect(page).to have_content "Password invalid."
+    expect(page).to have_content 'Password invalid.'
   end
 
   specify 'I can not delete my account if I do not enter my password' do
     visit cancel_account_users_path
     click_button 'Cancel my account'
     expect(User.all.count).to eq 1
-    expect(page).to have_content "Password invalid."
+    expect(page).to have_content 'Password invalid.'
   end
 end

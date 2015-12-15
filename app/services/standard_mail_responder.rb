@@ -14,5 +14,4 @@ class StandardMailResponder
   def failure(resource)
     @listener.failure(resource)
   end
-
 end

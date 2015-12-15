@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   include Pundit
   include ApplicationHelper
-  
+
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller? && !user_signed_in?
-      "registrations"
+      'registrations'
     else
-      "application"
+      'application'
     end
   end
 
@@ -25,9 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:error] = "You are not authorized to perform this action."
+    flash[:error] = 'You are not authorized to perform this action.'
     redirect_to(request.referrer || root_path)
   end
-
 end
-

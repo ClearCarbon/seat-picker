@@ -21,21 +21,21 @@ SeatPicker::Application.configure do
 
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
-  
-  #make debugging easier and ensure we are never posting
-  #params we shouldn't be
+
+  # make debugging easier and ensure we are never posting
+  # params we shouldn't be
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  
+
   config.action_mailer.delivery_method = :letter_opener
-  
+
   config.action_mailer.default_url_options = {
-    :host => 'localhost',
-    :port => 3000
+    host: 'localhost',
+    port: 3000
   }
   # config.action_mailer.default_url_options[:host] = "localhost"
   # config.action_mailer.default_url_options[:port] = "3000"

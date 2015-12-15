@@ -4,5 +4,4 @@ class UserDecorator < Draper::Decorator
   def summary
     "#{username} (#{email})"
   end
-
 end

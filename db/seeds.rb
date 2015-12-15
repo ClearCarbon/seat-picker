@@ -25,19 +25,15 @@ User.blueprint(:admin2) do
   admin { true }
 end
 
-
-
-rows = {'A' => 6,
-        'B' => 6,
-        'C' => 6,
-        'D' => 6}
+rows = { 'A' => 6,
+         'B' => 6,
+         'C' => 6,
+         'D' => 6 }
 
 rows.each do |row, seats|
   for seat in 1..seats
-    created_seat = Seat.new({:row => row, :number => seat})
-    if seat % 2 == 0
-      created_seat.user = User.make!
-    end
+    created_seat = Seat.new(row: row, number: seat)
+    created_seat.user = User.make! if seat.even?
     created_seat.save
   end
 end

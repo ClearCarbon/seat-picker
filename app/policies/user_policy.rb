@@ -1,11 +1,10 @@
 class UserPolicy < Struct.new(:current_user, :user)
-
   class Scope < Struct.new(:current_user, :user)
     def resolve
       if current_user.admin?
         user.all
       else
-        user.where(:id => current_user.id)
+        user.where(id: current_user.id)
       end
     end
   end
@@ -23,9 +22,7 @@ class UserPolicy < Struct.new(:current_user, :user)
   end
 
   def promote?
-    if current_user.id == user.id
-      return false
-    end
+    return false if current_user.id == user.id
 
     current_user.admin?
   end
