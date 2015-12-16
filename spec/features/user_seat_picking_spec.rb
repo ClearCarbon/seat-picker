@@ -124,8 +124,8 @@ describe 'As a user', js: true do
       end
       within(:css, '.modal') do
         click_link 'Deny'
-        wait_for_ajax
       end
+      expect(page).to_not have_css('#modalWindow', wait: 5)
       expect(SeatRequest.all.count).to eq(0)
       expect(seat1.user_id).to eq(user.id)
       mail = ActionMailer::Base.deliveries.last
@@ -141,8 +141,8 @@ describe 'As a user', js: true do
       end
       within(:css, '.modal') do
         click_link 'Accept'
-        wait_for_ajax
       end
+      expect(page).to_not have_css('#modalWindow', wait: 5)
       expect(SeatRequest.all.count).to eq(0)
       expect(seat1.reload.user_id).to eq(other_user.id)
       mail = ActionMailer::Base.deliveries.last

@@ -10,7 +10,7 @@ class Seat < ActiveRecord::Base
     return if skip_user_checking
     Seat.where(user_id: user_id).each do |seat|
       seat.skip_user_checking = true
-      seat.update_attributes(user_id: nil)
+      seat.update_attributes(user_id: nil) if seat.id != self.id
     end
   end
 
