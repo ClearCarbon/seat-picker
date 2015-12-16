@@ -2,6 +2,7 @@ require 'rails_helper.rb'
 
 describe 'As an admin' do
   let(:admin) { FactoryGirl.create :user, admin: true }
+  let!(:user)  { FactoryGirl.create :user, email: 'will@example.com', username: 'Will' }
   let!(:seat) { FactoryGirl.create :seat }
 
   before { login_as admin }
@@ -18,6 +19,14 @@ describe 'As an admin' do
     fill_in 'Number', with: '1'
     click_button 'Update Seat'
     expect(page).to have_content 'B1'
+  end
+  
+  specify 'I can assign a user to a seat', js: true do
+    visit edit_admin_seat_path(seat)
+    select2('Will (will@example.com)', from: 'User')
+    click_button 'Update Seat'
+    expect(page).to have_content 'Will'
+    expect(seat.reload.user.id).to eq user.id
   end
 
   specify 'I can delete a seat' do

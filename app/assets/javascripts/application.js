@@ -5,3 +5,4 @@
 //= require_tree .
 //= require ajax_modal
 //= require visibility_map
+//= require select2

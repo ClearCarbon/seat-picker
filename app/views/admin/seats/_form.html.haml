@@ -2,11 +2,13 @@
   %label
     Seat
   .row
-    .col-sm-2
+    .col-sm-3
       = f.input :row, placeholder: 'Row', label_html: { class: 'sr-only' }
-    .col-sm-2
+    .col-sm-3
       = f.input :number, placeholder: 'Number', label_html: { class: 'sr-only' }
-  = f.input :user_id, collection: @users.map {|user| [user.summary, user.id] }
+  .row
+    .col-sm-6
+      = f.input :user_id, collection: @users.map {|user| [user.summary, user.id] }
   = f.input :reserved
 
   .pull-right
@@ -25,5 +27,9 @@
         $('#seat_row').focus();
       }
     });
+  });
+  
+  $('#seat_user_id').select2({
+    theme: "bootstrap"
   });
   
