@@ -6,7 +6,7 @@
       %p.seat-message
         You are currently sat in seat
         = current_user.seat.decorate.name
-      = link_to 'Give up my seat', give_up_seat_path(current_user.seat), class: 'btn btn-default', method: :post, remote: true, data: { confirm: "Are you sure you wish to give up seat #{current_user.seat.decorate.name}?" }
+      = link_to 'Give up my seat', give_up_seat_path(current_user.seat), class: 'btn btn-primary', method: :post, remote: true, data: { confirm: "Are you sure you wish to give up seat #{current_user.seat.decorate.name}?" }
     - elsif !current_user.seat
       %p You currently have no seat.
       
@@ -19,7 +19,7 @@
             .col-xs-2
               = seat_request.decorate.seat_name
             .col-xs-10
-              = link_to 'Cancel request', seat_request_path(seat_request), method: :delete, remote: true, class: 'btn btn-default btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
+              = link_to 'Cancel request', seat_request_path(seat_request), method: :delete, remote: true, class: 'btn btn-primary btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
               
     - if current_user.seat && current_user.seat.seat_requests.any?
       #seat-requests.buffer-top
@@ -29,4 +29,4 @@
             .col-xs-8
               = seat_request.decorate.user_username
             .col-xs-4
-              = link_to 'View', seat_request_path(seat_request), class: 'btn btn-default btn-xs pull-rightn ajax-modal'
+              = link_to 'View', seat_request_path(seat_request), class: 'btn btn-primary btn-xs pull-rightn ajax-modal'
