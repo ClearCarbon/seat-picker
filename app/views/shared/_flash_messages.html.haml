@@ -1,5 +1,6 @@
 .flash-messages
   - flash.each do |name, msg|
     .alert.fade.in{ class: "alert-#{ name == 'notice' ? 'success' : 'danger' }" }
-      -# %a.close{ data: { dismiss: :alert } } &times;
       = msg
+      %a{ href: '#', title: 'Hide this message', class: 'dismiss-flash', data: { dismiss: :alert } }
+        Dismiss
