@@ -102,9 +102,9 @@ $seat-gap: ($table-length - ($seat-size * 2)) - ($seat-margin * 4);
 
 .seatpicker-picker .reserved {
   zoom: 1;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-  cursor: default;
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 /* theme specific styles */
