@@ -19,7 +19,7 @@ SeatPicker::Application.routes.draw do
       end
     end
 
-    resources :seats
+    resources :seats, :events
   end
 
   resources :seat_requests, only: [:show, :destroy] do

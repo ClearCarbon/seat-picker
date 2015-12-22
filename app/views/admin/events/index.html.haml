@@ -1,0 +1,15 @@
+%h1 Events
+= link_to "New Event", new_admin_event_path, :method => :get, :class => 'btn btn-primary pull-right'
+%table.table.table-striped
+  %thead
+    %tr
+      %th Title
+      %th
+  %tbody
+    - @events.each do |event|
+      %tr[event]
+        %td.col-md-10= event.title
+        %td.col-md-2
+          .btn-group.pull-right
+            = link_to 'Delete', admin_event_path(event), method: :delete, data: { confirm: "Are you sure you want to delete '#{event.title}'?" }, class: 'btn btn-danger btn-xs'
+            = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default btn-xs'

@@ -24,12 +24,16 @@
                 Admin
               %ul.dropdown-menu
                 %li
-                  = link_to admin_users_path do
-                    = fa_icon 'users'
-                    Users
+                  = link_to admin_events_path do
+                    = fa_icon 'calendar'
+                    Events
                 %li
                   = link_to admin_seats_path do
                     = fa_icon 'th'
                     Seats
+                %li
+                  = link_to admin_users_path do
+                    = fa_icon 'users'
+                    Users
         = render 'devise/menu/registration_items'
         = render 'devise/menu/login_items'

@@ -1,12 +1,10 @@
 %h1 Users
-= link_to "New User", new_admin_user_path, :method => :get, |
-  :class => 'btn btn-primary pull-right'              |
+= link_to "New User", new_admin_user_path, :method => :get, :class => 'btn btn-primary pull-right'
 %table.table.table-striped
   %thead
     %tr
       %th Username
       %th Email
-      %th
       %th
   %tbody
     - @users.each do |user|
