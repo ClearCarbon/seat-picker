@@ -43,11 +43,11 @@ class Admin::SeatsController < Admin::AdminController
 
   private
 
-  def set_seat
-    @seat = Seat.find(params[:id])
-  end
+    def set_seat
+      @seat = Seat.find(params[:id])
+    end
 
-  def seat_params
-    params.require(:seat).permit(:row, :number, :reserved, :user_id)
-  end
+    def seat_params
+      params.require(:seat).permit(:row, :number, :reserved, :user_id)
+    end
 end
