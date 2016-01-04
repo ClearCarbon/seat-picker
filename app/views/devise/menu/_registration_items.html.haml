@@ -13,8 +13,8 @@
           = fa_icon 'stop'
           Cancel account
 - else
-  - if !Rails.application.config.restricted_registration
+  - if registration_allowed?
     %li
-      = link_to new_user_registration_path do
+      = link_to new_user_registration_path(key: params[:key]) do
         = fa_icon 'user'
         Register

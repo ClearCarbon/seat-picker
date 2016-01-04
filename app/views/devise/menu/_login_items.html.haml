@@ -5,6 +5,6 @@
       Logout
 - else
   %li
-    = link_to new_user_session_path do
+    = link_to new_user_session_path(key: params[:key]) do
       = fa_icon 'sign-in'
       Login

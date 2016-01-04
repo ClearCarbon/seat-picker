@@ -9,7 +9,7 @@
       %ul.nav.navbar-nav
         - if !user_signed_in?
           %li
-            = link_to "/" do
+            = link_to root_path(key: params[:key]) do
               = fa_icon 'home'
               Home
         - if user_signed_in?
