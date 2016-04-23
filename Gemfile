@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-
 ruby '2.2.2'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails', '4.2'
 gem 'thin'
 gem 'pg'
@@ -33,7 +34,6 @@ gem 'virtus'
 
 gem 'rails_12factor', group: :production
 
-gem 'figaro'
 gem 'select2-rails'
 gem 'capybara-select2'
 
@@ -51,4 +51,7 @@ group :development, :test do
   gem 'letter_opener'
 end
 
-gem 'simplecov', require: false, group: :test
+group :test do
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
+  gem 'simplecov', require: false
+end

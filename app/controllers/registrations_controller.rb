@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
   
     def registration_allowed?
-      ENV['restricted_registration'] == 'false' || ENV['restricted_registration_key'] == params[:key]
+      Rails.configuration.restricted_registration == false || Rails.configuration.restricted_registration_key == params[:key]
     end
     
 end

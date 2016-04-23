@@ -111,7 +111,7 @@ RSpec.configure do |config|
   end
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, debug: false, window_size: [1280, 1024])
+    Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, debug: false, window_size: [1280, 1024], :phantomjs => Phantomjs.path)
   end
 
   Capybara.javascript_driver = :poltergeist
