@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_one :seat
+  has_many :seats
   has_many :seat_requests
   validates :username, presence: true
 
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   def request(seat)
     SeatRequest.where(user: self, seat: seat).first
+  end
+  
+  def seat(event)
+    seats.where(event: event).first
   end
 
   def admin?
