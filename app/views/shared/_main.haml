@@ -3,5 +3,5 @@
   .col-lg-9
     = yield
   #sidebar-actions.col-lg-3
-    - if user_signed_in?
+    - if user_signed_in? && @event
       = render 'shared/sidebar_actions'

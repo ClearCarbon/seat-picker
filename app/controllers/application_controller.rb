@@ -20,17 +20,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) << :username
-      devise_parameter_sanitizer.for(:account_update) << :username
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :username
+    devise_parameter_sanitizer.for(:account_update) << :username
+  end
 
-    def user_not_authorized
-      flash[:error] = 'You are not authorized to perform this action.'
-      redirect_to(request.referrer || root_path)
-    end
+  def user_not_authorized
+    flash[:error] = 'You are not authorized to perform this action.'
+    redirect_to(request.referrer || root_path)
+  end
 
-    def registration_allowed?
-      Rails.configuration.restricted_registration == false || Rails.configuration.restricted_registration_key == params[:key]
-    end
+  def registration_allowed?
+    Rails.configuration.restricted_registration == false || Rails.configuration.restricted_registration_key == params[:key]
+  end
+
 end

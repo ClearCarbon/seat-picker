@@ -1,0 +1,8 @@
+%h1 Update event '#{@event.name}'
+= simple_form_for [:admin, @event] do |f|
+  .row
+    .col-sm-6
+      = f.input :name
+
+  .pull-right
+    = f.button :submit, class: 'btn btn-primary'

@@ -25,16 +25,32 @@ User.blueprint(:admin2) do
   admin { true }
 end
 
-rows = { 'A' => 6,
-         'B' => 6,
-         'C' => 6,
-         'D' => 6 }
+Event.blueprint(:event) do
+  name { Faker::Lorem.words(1).first }
+end
 
-rows.each do |row, seats|
-  for seat in 1..seats
-    created_seat = Seat.new(row: row, number: seat)
-    created_seat.user = User.make! if seat.even?
-    created_seat.save
+(1..10).each do |i|
+  event = Event.make!(:event)
+  
+  rows = { 'A' => 6,
+           'B' => 6,
+           'C' => 6,
+           'D' => 6 }
+
+  rows.each do |row, seats|
+    for seat in 1..seats
+      created_seat = Seat.new(row: row, number: seat)
+      created_seat.event = event
+      if seat.even?
+        User.where(email: Faker::Internet.safe_email).first_or_create(
+          username: Faker::Internet.user_name,
+          password: 'password',
+          password_confirmation: 'password',
+          admin: false
+        )
+      end
+      created_seat.save
+    end
   end
 end
 

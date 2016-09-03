@@ -1,0 +1,7 @@
+%p.lead
+  Please select the event you wish to pick your seat for.
+
+.row
+  - @events.each do |event|
+    .col-sm-3.buffer-bottom
+      = link_to event.name, event_seats_path(event), class: 'btn btn-default btn-sm', title: "Pick your seat for '#{event.name}'"

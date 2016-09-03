@@ -1,0 +1,33 @@
+%h1 Manage your events
+
+.new-event
+  = simple_form_for [:admin, NewEventForm.new], as: :event, url: admin_events_path do |f|
+    .row
+      .col-sm-6
+        = f.input :name
+    .row
+      .col-sm-6
+        %p.lead Now create the events total initial seats and rows.
+    .row
+      .col-sm-6
+        = f.input :total_seats
+      .col-sm-6
+        = f.input :rows
+
+    .pull-right
+      = f.button :submit, class: 'btn btn-primary'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Event
+      %th
+  %tbody
+    - @events.each do |event|
+      %tr[event]
+        %td.col-md-3
+          = event.name
+        %td.col-md-6
+          .btn-group.pull-right
+            = link_to 'Delete', [:admin, event], method: :delete, data: { confirm: "Are you sure you want to delete the event '#{event.name}'?" }, class: 'btn btn-danger btn-xs'
+            = link_to 'Edit', edit_admin_event_path(event), class: 'btn btn-default btn-xs'

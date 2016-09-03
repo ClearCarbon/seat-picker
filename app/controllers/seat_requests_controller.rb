@@ -1,7 +1,8 @@
 class SeatRequestsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_seat, only: [:new, :create]
-  before_action :find_seat_request, except: [:create]
+  before_action :set_event
+  before_action :set_seat, only: [:new, :create]
+  before_action :set_seat_request, except: [:create]
   before_action :set_seats
   respond_to :js
 
@@ -58,16 +59,21 @@ class SeatRequestsController < ApplicationController
     params.require(:seat_request).permit(:reason)
   end
 
-  def find_seat
-    @seat = Seat.find(params[:seat_id]) if params[:seat_id]
+  def set_seat
+    @seat = @event.seats.includes(:event).find(params[:seat_id]).decorate if params[:seat_id]
   end
 
-  def find_seat_request
-    @seat_request = SeatRequest.find(params[:id]) if params[:id]
+  def set_seat_request
+    @seat_request = @event.seat_requests.find(params[:id]) if params[:id]
   end
 
   def set_seats
-    @rows = Seat.rows
-    @seats = Seat.ordered_seats
+    @rows = @event.seats.rows
+    @seats = @event.seats.ordered_seats.includes(:event).decorate
   end
+  
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+  
 end

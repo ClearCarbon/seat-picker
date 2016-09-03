@@ -5,5 +5,5 @@
 - elsif seat.user
   = link_to 'Request this seat', new_seat_seat_request_path(seat), class: 'btn btn-primary ajax-modal'
 - else
-  = link_to pick_seat_path(seat), class: 'btn btn-primary', method: :post, remote: true do
+  = link_to pick_event_seat_path(@event, seat), class: 'btn btn-primary', method: :post, remote: true do
     Pick this seat

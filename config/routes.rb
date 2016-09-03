@@ -2,7 +2,7 @@ SeatPicker::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   authenticated :user do
-    root to: 'seats#index', as: :user_root
+    root to: 'events#index', as: :user_root
   end
 
   root 'home#index'
@@ -20,6 +20,7 @@ SeatPicker::Application.routes.draw do
     end
 
     resources :seats
+    resources :events, except: [:new]
   end
 
   resources :seat_requests, only: [:show, :destroy] do
@@ -29,11 +30,13 @@ SeatPicker::Application.routes.draw do
     end
   end
 
-  resources :seats do
-    resources :seat_requests, only: [:new, :create]
-    member do
-      post :pick
-      post :give_up
+  resources :events, only: [] do
+    resources :seats do
+      resources :seat_requests, only: [:new, :create]
+      member do
+        post :pick
+        post :give_up
+      end
     end
   end
 end
