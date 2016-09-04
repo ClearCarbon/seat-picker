@@ -23,6 +23,9 @@ SeatPicker::Application.routes.draw do
     resources :events, except: [:new]
   end
 
+  resources :seats, only: [] do
+    resources :seat_requests, only: [:new, :create]
+  end
   resources :seat_requests, only: [:show, :destroy] do
     member do
       post :accept
@@ -32,7 +35,6 @@ SeatPicker::Application.routes.draw do
 
   resources :events, only: [] do
     resources :seats do
-      resources :seat_requests, only: [:new, :create]
       member do
         post :pick
         post :give_up

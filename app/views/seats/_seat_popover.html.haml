@@ -6,4 +6,4 @@
   = link_to 'Request this seat', new_seat_seat_request_path(seat), class: 'btn btn-primary ajax-modal'
 - else
   = link_to pick_event_seat_path(@event, seat), class: 'btn btn-primary', method: :post, remote: true do
-    Pick this seat
+    = current_user.seat(@event).present? ? 'Swap to this seat' : 'Pick this seat'

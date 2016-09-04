@@ -42,13 +42,14 @@ end
       created_seat = Seat.new(row: row, number: seat)
       created_seat.event = event
       if seat.even?
-        User.where(email: Faker::Internet.safe_email).first_or_create(
+        created_seat.user = User.where(email: Faker::Internet.safe_email).first_or_create(
           username: Faker::Internet.user_name,
           password: 'password',
           password_confirmation: 'password',
           admin: false
         )
       end
+      
       created_seat.save
     end
   end

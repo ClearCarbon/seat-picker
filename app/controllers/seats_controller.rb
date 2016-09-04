@@ -13,7 +13,7 @@ class SeatsController < ApplicationController
     authorize @seat, :pick?
     params = { user_id: current_user.id }
     @seat = @seat.decorate
-    StandardUpdater.new(StandardAjaxResponder.new(self)).update(@seat, params)
+    UserSeatPicker.new(StandardAjaxResponder.new(self)).pick(@seat, current_user)
   end
 
   def give_up
