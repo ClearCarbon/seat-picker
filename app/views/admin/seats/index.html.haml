@@ -1,5 +1,5 @@
-%h1 Seats
-= link_to "New Seat", new_admin_seat_path, :method => :get, :class => 'btn btn-primary pull-right'
+%h1 Seats - '#{@event.name}'
+= link_to "New Seat", new_admin_event_seat_path(@event), :method => :get, :class => 'btn btn-primary pull-right'
 %table.table.table-striped
   %thead
     %tr
@@ -16,5 +16,5 @@
             = seat.user.username
         %td.col-md-6
           .btn-group.pull-right
-            = link_to 'Delete', [:admin, seat], method: :delete, data: { confirm: "Are you sure you want to delete the seat '#{seat.name}'?" }, class: 'btn btn-danger btn-xs'
-            = link_to 'Edit', edit_admin_seat_path(seat), class: 'btn btn-default btn-xs'
+            = link_to 'Delete', admin_event_seat_path(@event, seat), method: :delete, data: { confirm: "Are you sure you want to delete the seat '#{seat.name}'?" }, class: 'btn btn-danger btn-xs'
+            = link_to 'Edit', edit_admin_event_seat_path(@event, seat), class: 'btn btn-default btn-xs'

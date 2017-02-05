@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @seat] do |f|
+= simple_form_for [:admin, @event, @seat] do |f|
   %label
     Seat
   .row
@@ -21,15 +21,14 @@
         $('#seat_number').focus();
       }
     });
-    
+
     $('#seat_number').on('keyup', function(event) {
       if (event.keyCode == '8') {
         $('#seat_row').focus();
       }
     });
   });
-  
+
   $('#seat_user_id').select2({
     theme: "bootstrap"
   });
-  

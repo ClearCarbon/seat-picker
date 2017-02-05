@@ -3,7 +3,7 @@ ruby '2.2.2'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails', '4.2'
-gem 'thin'
+gem 'puma'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'

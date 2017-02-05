@@ -11,7 +11,7 @@ describe 'As a user' do
     expect(page).to have_content 'Manage Account'
   end
 
-  specify 'I can not change my username without my password' do
+  specify 'I can not change my username without my password', js: true do
     visit edit_user_registration_path
     fill_in :user_username, with: 'test change'
     click_button 'Update'

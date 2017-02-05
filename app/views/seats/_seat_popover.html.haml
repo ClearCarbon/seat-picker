@@ -1,9 +1,9 @@
 - if seat.user && seat.user == current_user
   This is your current seat.
 - elsif seat.user && current_user.requested?(seat.object)
-  = link_to 'Cancel request', seat_request_path(current_user.request(seat)), class: 'btn btn-primary', method: :delete, remote: true
+  = link_to 'Cancel request', event_seat_request_path(@event, current_user.request(seat)), class: 'btn btn-primary', method: :delete, remote: true
 - elsif seat.user
-  = link_to 'Request this seat', new_seat_seat_request_path(seat), class: 'btn btn-primary ajax-modal'
+  = link_to 'Request this seat', new_event_seat_seat_request_path(@event, seat), class: 'btn btn-primary ajax-modal'
 - else
   = link_to pick_event_seat_path(@event, seat), class: 'btn btn-primary', method: :post, remote: true do
     = current_user.seat(@event).present? ? 'Swap to this seat' : 'Pick this seat'

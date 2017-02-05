@@ -2,13 +2,14 @@ require 'rails_helper.rb'
 
 describe 'As a user', js: true do
   let!(:user) { FactoryGirl.create :user, password: 'password' }
-  let!(:seat1) { FactoryGirl.create :seat }
-  let!(:seat2) { FactoryGirl.create :seat }
+  let(:event) { FactoryGirl.create(:event) }
+  let!(:seat1) { FactoryGirl.create :seat, event: event }
+  let!(:seat2) { FactoryGirl.create :seat, event: event }
 
   before { login_as user }
 
   specify 'I can pick my seat' do
-    visit seats_path
+    visit event_seats_path(event)
     find(:css, "#seat_#{seat1.id}").click
     click_link 'Pick this seat'
     wait_for_ajax
@@ -16,27 +17,27 @@ describe 'As a user', js: true do
   end
 
   context 'when a seat is reserved' do
-    let!(:seat1) { FactoryGirl.create :seat, reserved: true }
+    let!(:seat1) { FactoryGirl.create :seat, reserved: true, event: event }
 
     specify 'I can not pick the reserved seat' do
-      visit seats_path
+      visit event_seats_path(event)
       find(:css, "#seat_#{seat1.id}").click
       expect(page).to_not have_link 'Pick this seat'
     end
   end
 
   context 'that has already picked a seat' do
-    let!(:seat1) { FactoryGirl.create :seat, user: user }
+    let!(:seat1) { FactoryGirl.create :seat, user: user, event: event }
 
     specify 'I can give up my seat' do
-      visit seats_path
+      visit event_seats_path(event)
       click_link 'Give up my seat'
       wait_for_ajax
       expect(page).to_not have_content "You are currently sat in seat #{seat1.decorate.name}"
     end
 
     specify 'I can not pick a seat I have already picked' do
-      visit seats_path
+      visit event_seats_path(event)
       find(:css, "#seat_#{seat1.id}").click
       wait_for_ajax
       expect(page).to_not have_link 'Pick this seat'
@@ -45,10 +46,11 @@ describe 'As a user', js: true do
   end
 
   context 'with another user in the system that has picked a seat' do
-    let!(:other_user) { FactoryGirl.create :user, password: 'password', seat: seat1 }
+    let!(:other_user) { FactoryGirl.create :user, password: 'password' }
+    let!(:seat1) { FactoryGirl.create :seat, event: event, user: other_user }
 
     specify 'I can not pick a seat another user has picked' do
-      visit seats_path
+      visit event_seats_path(event)
       find(:css, "#seat_#{seat1.id}").click
       wait_for_ajax
       expect(page).to_not have_link 'Pick this seat'
@@ -56,7 +58,7 @@ describe 'As a user', js: true do
     end
 
     specify 'I can request an already picked seat' do
-      visit seats_path
+      visit event_seats_path(event)
       find(:css, "#seat_#{seat1.id}").click
       click_link 'Request this seat'
       wait_for_ajax
@@ -74,7 +76,7 @@ describe 'As a user', js: true do
       let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: user) }
 
       specify 'I can cancel my seat request within the sidebar' do
-        visit seats_path
+        visit event_seats_path(event)
         within(:css, '#sidebar-actions') do
           click_link 'Cancel request'
           wait_for_ajax
@@ -86,7 +88,7 @@ describe 'As a user', js: true do
       end
 
       specify 'I can cancel my seat request by clicking on a seat' do
-        visit seats_path
+        visit event_seats_path(event)
         find(:css, "#seat_#{seat1.id}").click
         within(:css, '.popover-content') do
           click_link 'Cancel request'
@@ -101,12 +103,13 @@ describe 'As a user', js: true do
   end
 
   context 'with another user in the system has requested my seat' do
-    let!(:seat1) { FactoryGirl.create :seat, user: user }
+    let(:event) { FactoryGirl.create(:event) }
+    let!(:seat1) { FactoryGirl.create :seat, user: user, event: event }
     let!(:other_user) { FactoryGirl.create :user, password: 'password' }
     let!(:request) { FactoryGirl.create(:seat_request, seat: seat1, user: other_user, reason: 'I want this seat') }
 
     specify 'I can see the reason for the request' do
-      visit seats_path
+      visit event_seats_path(event)
       within(:css, '#sidebar-actions') do
         click_link 'View'
         wait_for_ajax
@@ -117,7 +120,7 @@ describe 'As a user', js: true do
     end
 
     specify 'I can deny their request' do
-      visit seats_path
+      visit event_seats_path(event)
       within(:css, '#sidebar-actions') do
         click_link 'View'
         wait_for_ajax
@@ -134,7 +137,7 @@ describe 'As a user', js: true do
     end
 
     specify 'I can accept their request' do
-      visit seats_path
+      visit event_seats_path(event)
       within(:css, '#sidebar-actions') do
         click_link 'View'
         wait_for_ajax

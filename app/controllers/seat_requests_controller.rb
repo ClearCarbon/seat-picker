@@ -71,9 +71,9 @@ class SeatRequestsController < ApplicationController
     @rows = @event.seats.rows
     @seats = @event.seats.ordered_seats.includes(:event).decorate
   end
-  
+
   def set_event
     @event = Event.find(params[:event_id])
   end
-  
+
 end

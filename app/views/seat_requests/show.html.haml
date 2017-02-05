@@ -11,5 +11,5 @@
         %dd= @seat_request.reason
     .modal-footer
       %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Cancel
-      = link_to 'Accept', accept_seat_request_path(@seat_request), method: :post, remote: true, class: 'btn btn-primary pull-right'
-      = link_to 'Deny', deny_seat_request_path(@seat_request), method: :post, remote: true, class: 'btn btn-default pull-right'
+      = link_to 'Accept', accept_event_seat_request_path(@event, @seat_request), method: :post, remote: true, class: 'btn btn-primary pull-right'
+      = link_to 'Deny', deny_event_seat_request_path(@event, @seat_request), method: :post, remote: true, class: 'btn btn-default pull-right'

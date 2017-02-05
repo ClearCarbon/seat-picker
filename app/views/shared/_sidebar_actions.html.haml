@@ -2,7 +2,7 @@
   %div
     #seatpicker-management.well
       %h4 Seat Management
-      
+
       - if current_user.seat(@event)
         %p.seat-message
           You are currently sat in seat
@@ -10,18 +10,18 @@
         = link_to 'Give up my seat', give_up_event_seat_path(@event, current_user.seat(@event)), class: 'btn btn-primary', method: :post, remote: true, data: { confirm: "Are you sure you wish to give up seat #{current_user.seat(@event).decorate.name}?" }
       - else
         %p You currently have no seat.
-        
+
       - if current_user.seat_requests.any?
         #my-seat-requests.buffer-top
           %p You have requested the following #{'seat'.pluralize(current_user.seat_requests.count)}:
-          
+
           - current_user.seat_requests.each do |seat_request|
             .row.buffer-top-sm
               .col-xs-2
                 = seat_request.decorate.seat_name
               .col-xs-10
-                = link_to 'Cancel request', seat_request_path(seat_request), method: :delete, remote: true, class: 'btn btn-primary btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
-                
+                = link_to 'Cancel request', event_seat_request_path(@event, seat_request), method: :delete, remote: true, class: 'btn btn-primary btn-xs pull-right', data: { confirm: "Are you sure you wish to cancel your request for seat '#{seat_request.decorate.seat_name}'"}
+
       - if current_user.seat(@event) && current_user.seat(@event).seat_requests.any?
         #seat-requests.buffer-top
           %p Your seat has been requested by these users.
@@ -30,4 +30,4 @@
               .col-xs-8
                 = seat_request.decorate.user_username
               .col-xs-4
-                = link_to 'View', seat_request_path(seat_request), class: 'btn btn-primary btn-xs pull-rightn ajax-modal'
+                = link_to 'View', event_seat_request_path(@event, seat_request), class: 'btn btn-primary btn-xs pull-rightn ajax-modal'

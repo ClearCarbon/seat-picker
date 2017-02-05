@@ -1,5 +1,5 @@
 .modal-dialog
-  = simple_form_for @seat_request, url: seat_seat_requests_path(@seat_request.seat), method: :post, remote: true do |f|
+  = simple_form_for @seat_request, url: event_seat_seat_requests_path(@event, @seat_request.seat), method: :post, remote: true do |f|
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}

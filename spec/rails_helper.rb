@@ -111,17 +111,17 @@ RSpec.configure do |config|
   end
 
   Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, 
-    phantomjs_logger: WarningSuppressor, 
-    debug: false, window_size: [1280, 1024], 
+    Capybara::Poltergeist::Driver.new(app,
+    phantomjs_logger: WarningSuppressor,
+    debug: false, window_size: [1280, 1024],
     phantomjs: Phantomjs.path)
   end
 
   Capybara.javascript_driver = :poltergeist
-  Capybara.server do |app, port|
-    require 'rack/handler/thin'
-    Rack::Handler::Thin.run(app, Port: port)
-  end
+  # Capybara.server do |app, port|
+  #   require 'rack/handler/thin'
+  #   Rack::Handler::Thin.run(app, Port: port)
+  # end
 
   def wait_for_ajax
     Timeout.timeout(Capybara.default_wait_time) do
